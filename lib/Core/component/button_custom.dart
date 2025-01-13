@@ -29,7 +29,7 @@ class ButtonCustom extends StatelessWidget {
               : ColorManager.primaryColor,
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(12.r),
           ),
         ),
         onPressed: enable == false

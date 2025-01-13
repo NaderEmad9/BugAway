@@ -6,7 +6,7 @@ import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Core/utils/font_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../Core/component/image_profile.dart';
 import '../../../../Core/utils/images.dart';
@@ -118,7 +118,7 @@ class DrawerWidget extends StatelessWidget {
                 Text(
                   userName,
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontSize: 20.sp,
+                        fontSize: 18.sp,
                         color: ColorManager.whiteColor,
                       ),
                 ),
@@ -179,6 +179,7 @@ class DrawerWidget extends StatelessWidget {
         SharedPrefsLocal.prefs.clear();
         FirebaseAuth.instance.signOut();
         Navigator.pushNamedAndRemoveUntil(
+          // ignore: use_build_context_synchronously
           context,
           RoutesManger.routeNameLogin,
           (route) => false,
@@ -191,9 +192,9 @@ class DrawerWidget extends StatelessWidget {
 String getDisplayUserType(String userType) {
   switch (userType.toLowerCase()) {
     case 'admin':
-      return 'Admin';
+      return StringManager.manager;
     case 'user':
-      return 'Engineer';
+      return StringManager.engineer;
     default:
       return userType;
   }

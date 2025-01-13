@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/component/error_widget.dart';
 import 'package:bug_away/Core/my_bloc_observer.dart';
-import 'package:bug_away/Core/utils/FCM.dart';
+import 'package:bug_away/Core/utils/fcm.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/account_request_admin/presentation/manager/requests_screen_viewmodel_cubit.dart';
 import 'package:bug_away/Features/category/presentation/manager/category_cubit.dart';
@@ -17,13 +17,16 @@ import 'package:bug_away/Features/login/presentation/manager/cubit/login_screen_
 import 'package:bug_away/Features/user_request_account/presentation/manager/user_request_account_view_model_cubit.dart';
 import 'package:bug_away/Features/site_report/presentation/manager/report_view_model.dart';
 import 'package:bug_away/di/di.dart';
+import 'package:logging/logging.dart';
 
 import 'Config/theme/theming.dart';
-import 'Core/utils/SharedPrefsLocal.dart';
+import 'Core/utils/shared_prefs_local.dart';
 import 'Features/category/profile/presentation/manager/profile_cubit.dart';
 import 'Features/register/presentation/manager/register_view_model_cubit.dart';
 import 'Features/site/presentation/manager/site_view_model.dart';
 import 'firebase_options.dart';
+
+final Logger _logger = Logger('Main');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +39,7 @@ void main() async {
   // Initialize Firebase Cloud Messaging
   await FCM.fcmInit();
   var token = await FCM.getToken();
-  print('FCM Token: $token');
+  _logger.info('FCM Token: $token');
 
   // Lock the app in portrait mode
   await SystemChrome.setPreferredOrientations([

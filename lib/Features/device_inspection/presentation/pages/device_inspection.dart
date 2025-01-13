@@ -69,7 +69,7 @@ class _DeviceInspectionState extends State<DeviceInspection> {
             const Divider(
               color: ColorManager.whiteColor,
             ),
-            CustomText(
+            const CustomText(
               title: StringManager.inspectionDeviceCondition,
             ),
             SizedBox(
@@ -86,7 +86,7 @@ class _DeviceInspectionState extends State<DeviceInspection> {
             const Divider(
               color: ColorManager.whiteColor,
             ),
-            CustomText(
+            const CustomText(
               title: StringManager.inspectionDeviceCondition,
             ),
             DropDownMenuWidget(
@@ -103,7 +103,7 @@ class _DeviceInspectionState extends State<DeviceInspection> {
             const Divider(
               color: ColorManager.whiteColor,
             ),
-            CustomText(
+            const CustomText(
               title: StringManager.notes,
             ),
             SizedBox(
@@ -118,7 +118,7 @@ class _DeviceInspectionState extends State<DeviceInspection> {
             ),
             Row(
               children: [
-                CustomText(
+                const CustomText(
                   title: StringManager.inspectionRemoved,
                 ),
                 Checkbox(

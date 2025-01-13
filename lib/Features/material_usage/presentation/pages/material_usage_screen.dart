@@ -15,10 +15,10 @@ class MaterialUsageScreen extends StatefulWidget {
   const MaterialUsageScreen({super.key});
 
   @override
-  _MaterialUsageScreenState createState() => _MaterialUsageScreenState();
+  MaterialUsageScreenState createState() => MaterialUsageScreenState();
 }
 
-class _MaterialUsageScreenState extends State<MaterialUsageScreen>
+class MaterialUsageScreenState extends State<MaterialUsageScreen>
     with SingleTickerProviderStateMixin {
   Map<String, int> materials = {};
   Map<String, int> availableQuantities = {};

@@ -4,9 +4,9 @@ import '../../../../Core/utils/colors.dart';
 import 'custom_text.dart';
 
 class AddMaterial extends StatefulWidget {
-  List<String> chooseList;
-  String title;
-  AddMaterial({super.key, required this.chooseList, required this.title});
+  final List<String> chooseList;
+  final String title;
+  const AddMaterial({super.key, required this.chooseList, required this.title});
 
   @override
   State<AddMaterial> createState() => _AddMaterialState();

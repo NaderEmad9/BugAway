@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/register/domain/entities/user_model_entity.dart';
 

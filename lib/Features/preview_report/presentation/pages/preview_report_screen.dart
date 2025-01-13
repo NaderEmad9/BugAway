@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +16,7 @@ import '../../../site_report/presentation/widgets/lottie_send_loading.dart';
 import '../widgets/image_viewer_widget.dart';
 import '../widgets/title_divider_widget.dart';
 import '../../../../Core/component/custom_dialog.dart';
-import '../../../../Core/utils/SharedPrefsLocal.dart';
+import '../../../../Core/utils/shared_prefs_local.dart';
 import '../../../register/data/models/user_model_dto.dart';
 
 class PreviewReportScreen extends StatefulWidget {
@@ -390,7 +392,7 @@ class _PreviewReportScreenState extends State<PreviewReportScreen>
                 ),
                 if (state is ReportLoading)
                   Container(
-                    color: Colors.black.withOpacity(0.5),
+                    color: ColorManager.overlayColor,
                     child: const Center(
                       child: LottieSendingWidget(),
                     ),

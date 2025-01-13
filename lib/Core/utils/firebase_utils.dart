@@ -82,7 +82,7 @@ class FirebaseUtils {
       final storageRef = FirebaseStorage.instance.ref('uploads/$imgName');
       await storageRef.putData(compressedImage);
       String imgUrl = await storageRef.getDownloadURL();
-      print(imgUrl);
+      // print(imgUrl);
       return Right(imgUrl);
     } catch (e) {
       return Left(Failure(errorMessage: e.toString()));

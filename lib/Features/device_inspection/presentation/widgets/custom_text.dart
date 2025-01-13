@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomText extends StatelessWidget {
-  String title;
-  CustomText({super.key, required this.title});
+  final String title;
+  const CustomText({super.key, required this.title});
   @override
   Widget build(BuildContext context) {
     return Text(

@@ -1,7 +1,4 @@
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,8 +7,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/component/button_custom.dart';
 import 'package:bug_away/Core/component/lottie_loading_widget.dart';
-import 'package:bug_away/Core/component/validators.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/colors.dart';
 import 'package:bug_away/Core/utils/images.dart';
 import 'package:bug_away/Core/utils/strings.dart';
@@ -147,8 +143,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       BuildInfoCard(
                                         title: StringManager.role,
                                         value: ProfileCubit.get(context)
-                                            .typeController
-                                            .text,
+                                                    .typeController
+                                                    .text ==
+                                                UserAndAdminModelDto.admin
+                                            ? StringManager.manager
+                                            : StringManager.engineer,
                                       ),
                                       BuildInfoCard(
                                         icon: const FaIcon(
@@ -259,6 +258,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 SharedPrefsLocal.prefs.clear();
                                 FirebaseAuth.instance.signOut();
                                 Navigator.pushNamedAndRemoveUntil(
+                                  // ignore: use_build_context_synchronously
                                   context,
                                   RoutesManger.routeNameEngOwnerScreen,
                                   (route) => false,

@@ -1,10 +1,11 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:bug_away/Features/chat/presentation/widgets/users_name_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/chat/data/models/message_dto.dart';
 import 'package:bug_away/Features/chat/domain/entities/message_entity.dart';

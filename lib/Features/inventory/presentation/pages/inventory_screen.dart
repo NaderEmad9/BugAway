@@ -16,10 +16,10 @@ class InventoryScreen extends StatefulWidget {
   const InventoryScreen({super.key});
 
   @override
-  _InventoryScreenState createState() => _InventoryScreenState();
+  InventoryScreenState createState() => InventoryScreenState();
 }
 
-class _InventoryScreenState extends State<InventoryScreen>
+class InventoryScreenState extends State<InventoryScreen>
     with SingleTickerProviderStateMixin {
   late InventoryViewModelCubit bloc;
 

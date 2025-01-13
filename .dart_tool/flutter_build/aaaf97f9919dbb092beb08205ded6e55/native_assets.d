@@ -1,0 +1,1 @@
+ /Users/naderemad/StudioProjects/BugAway/.dart_tool/flutter_build/aaaf97f9919dbb092beb08205ded6e55/native_assets.yaml: 

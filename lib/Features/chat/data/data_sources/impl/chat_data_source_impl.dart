@@ -1,13 +1,13 @@
 import 'dart:io';
 
+import 'package:bug_away/Core/utils/fcm_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
-import 'package:bug_away/Core/utils/fcm_helper.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/firebase_utils.dart';
 import 'package:bug_away/Core/utils/notification_model.dart';
 import 'package:bug_away/Core/utils/strings.dart';
@@ -60,9 +60,10 @@ class ChatDataSourceImpl implements ChatDataSource {
         continue;
       }
       if (admin.fcmToken != null) {
-        var tokens = admin.fcmToken;
-        for (var token in tokens!) {
-          await NotificationService.sendNotification(token, title, body);
+        var tokens = admin.fcmToken!;
+        for (var token in tokens) {
+          await NotificationService.sendNotification(
+              deviceToken: token, title: title, body: body);
         }
       }
       await FirebaseUtils.saveNotification(
@@ -74,9 +75,10 @@ class ChatDataSourceImpl implements ChatDataSource {
         continue;
       }
       if (user.fcmToken != null) {
-        var tokens = user.fcmToken;
-        for (var token in tokens!) {
-          await NotificationService.sendNotification(token, title, body);
+        var tokens = user.fcmToken!;
+        for (var token in tokens) {
+          await NotificationService.sendNotification(
+              deviceToken: token, title: title, body: body);
         }
       }
       await FirebaseUtils.saveNotification(
@@ -90,7 +92,7 @@ class ChatDataSourceImpl implements ChatDataSource {
       var connectivityResult = await Connectivity().checkConnectivity();
       if (connectivityResult.contains(ConnectivityResult.wifi) ||
           connectivityResult.contains(ConnectivityResult.mobile)) {
-        var result = await FirebaseUtils.insertMessage(message);
+        await FirebaseUtils.insertMessage(message);
         if (Platform.isAndroid) {
           var data = SharedPrefsLocal.getData(key: StringManager.userAdmin);
           await handleNotification(data!, message.content);

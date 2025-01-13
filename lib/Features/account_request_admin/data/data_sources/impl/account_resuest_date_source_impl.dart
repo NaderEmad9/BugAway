@@ -1,3 +1,4 @@
+import 'package:bug_away/Core/utils/fcm_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
@@ -7,8 +8,7 @@ import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
-import 'package:bug_away/Core/utils/fcm_helper.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/firebase_utils.dart';
 import 'package:bug_away/Core/utils/notification_model.dart';
 import 'package:bug_away/Core/utils/strings.dart';
@@ -101,7 +101,7 @@ class AccountRequestDataSourceImpl implements AccountRequestDataSource {
             email: user.email);
         user.status = "Accepted";
         await editRequest(user.status ?? "", user.id ?? "");
-        var userFireStore = await addUserFireStore(userAndAdminModelDto);
+        await addUserFireStore(userAndAdminModelDto);
         var adminData = SharedPrefsLocal.getData(key: StringManager.userAdmin);
 
         await sendEmail(
@@ -134,7 +134,7 @@ class AccountRequestDataSourceImpl implements AccountRequestDataSource {
       UserRequestAccountEntity user, String status) async {
     String title = "Request Account Action";
     String body =
-        "Admin (${adminData.userName ?? ""}) is $status Account Request to (${user.userName})";
+        "Admin (${adminData.userName ?? ""}) has $status Account Request for (${user.userName})";
     List<UserAndAdminModelDto> adminList =
         await FirebaseUtils.getAdminOrUserTokenFromFireStore(
             UserAndAdminModelDto.admin);
@@ -150,9 +150,10 @@ class AccountRequestDataSourceImpl implements AccountRequestDataSource {
         continue;
       }
       if (admin.fcmToken != null) {
-        var tokens = admin.fcmToken;
-        for (var token in tokens!) {
-          await NotificationService.sendNotification(token, title, body);
+        var tokens = admin.fcmToken!;
+        for (var token in tokens) {
+          await NotificationService.sendNotification(
+              deviceToken: token, title: title, body: body);
         }
       }
       await FirebaseUtils.saveNotification(
@@ -173,7 +174,7 @@ class AccountRequestDataSourceImpl implements AccountRequestDataSource {
         await sendEmail(
             user.email ?? "",
             "Pest Control Company Rejected Your Account Request ",
-            "Sorry ${user.userName} Rejected Your Account \nManager:(${adminData!.userName ?? ""})");
+            "Sorry ${user.userName}, your account request was rejected. \nManager:(${adminData!.userName ?? ""})");
 
         await handleNotification(adminData, user, "Rejected");
 
@@ -192,7 +193,6 @@ class AccountRequestDataSourceImpl implements AccountRequestDataSource {
         return Left(Failure(errorMessage: StringManager.somethingWentWrong));
       }
     } catch (e) {
-      print(e.toString());
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }

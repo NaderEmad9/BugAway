@@ -75,7 +75,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         decoration: InputDecoration(
           hintText: widget.hint,
           hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: widget.hintTextColor ?? ColorManager.greyShade3,
+                color: widget.hintTextColor ?? ColorManager.greyShade4,
               ),
           suffixIcon: widget.isSecured == true
               ? IconButton(
@@ -110,7 +110,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
           focusedBorder: widget.border ??
               OutlineInputBorder(
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(8.r),
+                borderRadius:
+                    widget.borderRadius ?? BorderRadius.circular(16.r),
                 borderSide: BorderSide(
                   width: 1,
                   color: widget.focusedBorderColor ?? ColorManager.primaryColor,
@@ -126,7 +127,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
           focusedErrorBorder: widget.border ??
               OutlineInputBorder(
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(8.r),
+                borderRadius:
+                    widget.borderRadius ?? BorderRadius.circular(16.r),
                 borderSide: BorderSide(
                   width: 1,
                   color: widget.errorBorderColor ?? ColorManager.primaryColor,

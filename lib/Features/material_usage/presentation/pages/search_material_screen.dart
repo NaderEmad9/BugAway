@@ -7,6 +7,9 @@ import 'package:bug_away/Core/utils/firebase_utils.dart';
 import 'package:bug_away/Features/inventory/data/models/materail_model_dto.dart';
 import 'package:bug_away/Core/component/search_field_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:logging/logging.dart';
+
+final Logger _logger = Logger('SearchMaterialUsageScreen');
 
 class SearchMaterialUsageScreen extends StatefulWidget {
   const SearchMaterialUsageScreen({super.key});
@@ -61,7 +64,9 @@ class SearchMaterialScreenState extends State<SearchMaterialUsageScreen>
           for (var material in materialsList) material.name!: material.unit!
         }; // Store units
       });
-    } catch (e) {}
+    } catch (e) {
+      _logger.severe('Failed to fetch materials', e);
+    }
   }
 
   @override
@@ -144,7 +149,6 @@ class SearchMaterialScreenState extends State<SearchMaterialUsageScreen>
                 final availableQuantity =
                     availableQuantities[materialName] ?? 0;
                 final selectedQuantity = selectedQuantities[materialName] ?? 0;
-// Get unit
 
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0.r),

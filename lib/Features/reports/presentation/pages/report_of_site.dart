@@ -1,5 +1,4 @@
 import 'package:bug_away/Core/component/empty_pages.dart';
-import 'package:bug_away/Core/component/loading_items_widget.dart';
 import 'package:bug_away/Core/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

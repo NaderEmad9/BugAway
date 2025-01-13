@@ -1,15 +1,12 @@
 import 'dart:io';
-
+import 'package:bug_away/Core/utils/fcm_helper.dart';
+import 'package:logging/logging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:injectable/injectable.dart';
-import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/fcm_helper.dart';
 import 'package:bug_away/Core/utils/firebase_utils.dart';
-import 'package:bug_away/Core/utils/notification_model.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/register/data/models/user_model_dto.dart';
 import 'package:bug_away/Features/user_request_account/data/data_source/data/user_request_account_data_source.dart';
@@ -17,6 +14,8 @@ import 'package:bug_away/Features/user_request_account/data/models/user_request_
 
 @Injectable(as: UserRequestAccountDataSource)
 class UserRequestAccountDataSourceImpl implements UserRequestAccountDataSource {
+  final Logger _logger = Logger('UserRequestAccountDataSourceImpl');
+
   static Future<void> addUserRequestAccountToFireStore(
       UserRequestAccountDto user) async {
     var collection = FirebaseUtils.getUserRequestAccountCollection(
@@ -35,6 +34,7 @@ class UserRequestAccountDataSourceImpl implements UserRequestAccountDataSource {
 
       return querySnapshot.docs.isNotEmpty;
     } catch (e) {
+      _logger.severe('Error checking email existence: $e');
       return false;
     }
   }
@@ -87,34 +87,26 @@ class UserRequestAccountDataSourceImpl implements UserRequestAccountDataSource {
             password: password,
             dateTime: DateTime.now());
 
-        var userRequestAccounFireStore =
-            await addUserRequestAccountToFireStore(userRequestAccountDto);
+        await addUserRequestAccountToFireStore(userRequestAccountDto);
         String title = "New Request Account Available";
         String body =
-            "(${userRequestAccountDto.userName}) is Send Account Request to Admins Check Your Request Screen";
+            "(${userRequestAccountDto.userName}) has sent an account request to admins. Check your request screen.";
         List<UserAndAdminModelDto> adminList =
             await FirebaseUtils.getAdminOrUserTokenFromFireStore(
                 UserAndAdminModelDto.admin);
-        NotificationModel notificationModel = NotificationModel(
-            route: RoutesManger.routeNameRequiest,
-            title: title,
-            body: body,
-            dateTime: DateTime.now(),
-            to: "admin");
 
-        // var localToken= SharedPrefsLocal.getData(key: StringManager.keyUserAdmin);
         for (var admin in adminList) {
           if (admin.fcmToken != null) {
-            var tokens = admin.fcmToken;
-            for (var token in tokens!) {
-              if (token.isNotEmpty) {
-                await NotificationService.sendNotification(token, title, body);
+            var tokens = admin.fcmToken!;
+            try {
+              for (var token in tokens) {
+                await NotificationService.sendNotification(
+                    deviceToken: token, title: title, body: body);
               }
+            } catch (e) {
+              _logger.severe('Error sending notification: $e');
             }
           }
-
-          await FirebaseUtils.saveNotification(
-              notificationModel, UserAndAdminModelDto.admin, admin.id!);
         }
       } else {
         return Left(Failure(errorMessage: StringManager.emailInUse));
@@ -122,6 +114,7 @@ class UserRequestAccountDataSourceImpl implements UserRequestAccountDataSource {
 
       return const Right(null);
     } on FirebaseAuthException catch (e) {
+      _logger.severe('FirebaseAuthException: $e');
       if (e.code == 'invalid-credential') {
         return Left(Failure(errorMessage: StringManager.badFormat));
       } else if (e.code == 'email-already-in-use') {
@@ -132,8 +125,8 @@ class UserRequestAccountDataSourceImpl implements UserRequestAccountDataSource {
         return Left(Failure(errorMessage: StringManager.somethingWentWrong));
       }
     } catch (e) {
-      print(e.toString());
-      return Left(Failure(errorMessage: e.toString()));
+      _logger.severe('Unexpected error: $e');
+      return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }
 }

@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:bug_away/Features/register/domain/entities/user_model_entity.dart';
 import 'package:bug_away/Features/site/presentation/manager/site_state.dart';
 
-import '../../../../Core/utils/SharedPrefsLocal.dart';
+import '../../../../Core/utils/shared_prefs_local.dart';
 import '../../../../Core/utils/strings.dart';
 import '../../../reports/domain/entities/site_entity.dart';
 import '../../domain/use_cases/add_site_user_case.dart';

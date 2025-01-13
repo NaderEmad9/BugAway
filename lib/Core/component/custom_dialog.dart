@@ -27,8 +27,8 @@ class DialogUtils {
               primaryColor:
                   isDarkMode ? ColorManager.whiteColor : ColorManager.blueColor,
               scaffoldBackgroundColor: isDarkMode
-                  ? ColorManager.blackColor.withOpacity(0.8)
-                  : ColorManager.whiteColor.withOpacity(0.8),
+                  ? ColorManager.blackColor.withAlpha((0.8 * 255).toInt())
+                  : ColorManager.whiteColor.withAlpha((0.8 * 255).toInt()),
             ),
             child: CupertinoAlertDialog(
               title: const CupertinoActivityIndicator(),
@@ -58,8 +58,8 @@ class DialogUtils {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: isDarkMode
-                ? ColorManager.blackColor.withOpacity(0.8)
-                : ColorManager.whiteColor.withOpacity(0.9),
+                ? ColorManager.blackColor.withAlpha((0.8 * 255).toInt())
+                : ColorManager.whiteColor.withAlpha((0.8 * 255).toInt()),
             contentPadding: const EdgeInsets.symmetric(vertical: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -170,8 +170,8 @@ class DialogUtils {
         actionsWithSeparators.add(
           Divider(
             color: isDarkMode
-                ? ColorManager.whiteColor.withOpacity(0.1)
-                : ColorManager.blackColor.withOpacity(0.2),
+                ? ColorManager.whiteColor.withAlpha((0.09 * 255).toInt())
+                : ColorManager.blackColor.withAlpha((0.2 * 255).toInt()),
             thickness: 0.6,
           ),
         );
@@ -190,8 +190,8 @@ class DialogUtils {
               primaryColor:
                   isDarkMode ? ColorManager.whiteColor : ColorManager.blueColor,
               scaffoldBackgroundColor: isDarkMode
-                  ? ColorManager.blackColor.withOpacity(0.8)
-                  : ColorManager.whiteColor.withOpacity(0.8),
+                  ? ColorManager.blackColor.withAlpha((0.8 * 255).toInt())
+                  : ColorManager.whiteColor.withAlpha((0.8 * 255).toInt()),
             ),
             child: CupertinoAlertDialog(
               title: Padding(
@@ -216,8 +216,9 @@ class DialogUtils {
                   style: TextStyle(
                     fontSize: 16,
                     color: isDarkMode
-                        ? ColorManager.whiteColor.withOpacity(0.7)
-                        : ColorManager.blackColor.withOpacity(0.87),
+                        ? ColorManager.whiteColor.withAlpha((0.7 * 255).toInt())
+                        : ColorManager.blackColor
+                            .withAlpha((0.8 * 255).toInt()),
                   ),
                 ),
               ),
@@ -239,8 +240,8 @@ class DialogUtils {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: isDarkMode
-                ? ColorManager.blackColor.withOpacity(0.8)
-                : ColorManager.whiteColor.withOpacity(0.9),
+                ? ColorManager.blackColor.withAlpha((0.8 * 255).toInt())
+                : ColorManager.whiteColor.withAlpha((0.9 * 255).toInt()),
             title: Text(
               title ?? '',
               style: TextStyle(
@@ -256,8 +257,9 @@ class DialogUtils {
               style: TextStyle(
                 fontSize: 16,
                 color: isDarkMode
-                    ? ColorManager.whiteColor.withOpacity(0.7)
-                    : ColorManager.blackColor.withOpacity(0.87),
+                    ? ColorManager.whiteColor.withAlpha((0.7 * 255).toInt())
+                    : ColorManager.blackColor
+                  ..withAlpha((0.8 * 255).toInt()),
               ),
             ),
             actions: actions,

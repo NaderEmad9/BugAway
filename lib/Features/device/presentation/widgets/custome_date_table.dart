@@ -4,7 +4,7 @@ import '../../data/models/testing_data_table.dart';
 
 class CustomeDateTable extends StatelessWidget {
   //todo get the date and make a copy of it so we can edit it later , sorting , modification and so on...
-  List<DeviceId> data = List.from(deviceId);
+  final List<DeviceId> data = List.from(deviceId);
 
   CustomeDateTable({super.key});
 

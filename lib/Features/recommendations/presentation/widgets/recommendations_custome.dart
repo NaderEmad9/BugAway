@@ -27,6 +27,7 @@ class _RecommendationsCustomeState extends State<RecommendationsCustome> {
           checkColor: Colors.white,
           value: onClick,
           onChanged: (value) {
+            // ignore: avoid_print
             print(widget.text);
             setState(() {
               onClick = value!;

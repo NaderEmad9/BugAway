@@ -9,10 +9,10 @@ class UserDropdown extends StatefulWidget {
   const UserDropdown({super.key});
 
   @override
-  _UserDropdownState createState() => _UserDropdownState();
+  UserDropdownState createState() => UserDropdownState();
 }
 
-class _UserDropdownState extends State<UserDropdown> {
+class UserDropdownState extends State<UserDropdown> {
   @override
   Widget build(BuildContext context) {
     return Padding(

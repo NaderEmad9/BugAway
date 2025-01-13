@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +8,7 @@ import 'package:bug_away/Features/site_report/presentation/manager/report_state.
 import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
 import '../../../../Core/component/custom_dialog.dart';
-import '../../../../Core/utils/SharedPrefsLocal.dart';
+import '../../../../Core/utils/shared_prefs_local.dart';
 import '../../../../Core/utils/firebase_utils.dart';
 import '../../../../Core/utils/strings.dart';
 import '../../../../Core/utils/pdf_utils.dart';

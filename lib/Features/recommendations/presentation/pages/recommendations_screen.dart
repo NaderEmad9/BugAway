@@ -12,10 +12,10 @@ class RecommendationsScreen extends StatefulWidget {
   const RecommendationsScreen({super.key});
 
   @override
-  _RecommendationsScreenState createState() => _RecommendationsScreenState();
+  RecommendationsScreenState createState() => RecommendationsScreenState();
 }
 
-class _RecommendationsScreenState extends State<RecommendationsScreen>
+class RecommendationsScreenState extends State<RecommendationsScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late List<Animation<Offset>> _slideAnimations;

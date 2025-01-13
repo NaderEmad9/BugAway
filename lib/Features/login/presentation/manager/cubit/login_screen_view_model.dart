@@ -14,10 +14,8 @@ class LoginScreenViewModel extends Cubit<LoginStates> {
       BlocProvider.of<LoginScreenViewModel>(context);
 
   // Holding Data
-  TextEditingController emailController =
-      TextEditingController(text: "ahmed2@gmail.com");
-  TextEditingController passwordController =
-      TextEditingController(text: "Mm#123456");
+  TextEditingController emailController = TextEditingController(text: "");
+  TextEditingController passwordController = TextEditingController(text: "");
   LoginUseCase loginUseCase;
   bool isLoaded = false;
   bool dialogShown = false;

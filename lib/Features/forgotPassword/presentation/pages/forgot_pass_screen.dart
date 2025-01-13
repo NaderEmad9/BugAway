@@ -17,7 +17,7 @@ import '../../../../Core/component/validators.dart';
 
 class ForgotPassScreen extends StatefulWidget {
   ForgotPassScreen({super.key});
-  ForgetPasswordViewModel viewModel = getIt<ForgetPasswordViewModel>();
+  final ForgetPasswordViewModel viewModel = getIt<ForgetPasswordViewModel>();
 
   @override
   State<ForgotPassScreen> createState() => _ForgotPassScreenState();

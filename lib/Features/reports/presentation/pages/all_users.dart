@@ -3,7 +3,6 @@ import 'package:bug_away/Core/component/search_field_widget.dart';
 import 'package:bug_away/Core/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Features/reports/presentation/widgets/user_widget.dart';

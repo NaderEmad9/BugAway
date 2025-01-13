@@ -1,12 +1,12 @@
 import 'dart:io';
+import 'package:bug_away/Core/utils/fcm_helper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/fcm_helper.dart';
 import 'package:bug_away/Core/utils/firebase_utils.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/notification_model.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/register/data/models/user_model_dto.dart';
@@ -24,7 +24,7 @@ class RegisterDataSourceImpl implements RegisterDataSource {
       UserAndAdminModelDto adminData, String userAdded) async {
     String title = "Add New Account";
     String body =
-        "Admin (${adminData.userName ?? ""}) is Added New Account To ($userAdded)";
+        "Admin (${adminData.userName ?? ""}) has added a new account for ($userAdded)";
 
     List<UserAndAdminModelDto> adminList =
         await FirebaseUtils.getAdminOrUserTokenFromFireStore(
@@ -42,9 +42,10 @@ class RegisterDataSourceImpl implements RegisterDataSource {
         continue;
       }
       if (admin.fcmToken != null) {
-        var tokens = admin.fcmToken;
-        for (var token in tokens!) {
-          await NotificationService.sendNotification(token, title, body);
+        var tokens = admin.fcmToken!;
+        for (var token in tokens) {
+          await NotificationService.sendNotification(
+              deviceToken: token, title: title, body: body);
         }
       }
       await FirebaseUtils.saveNotification(

@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:logging/logging.dart';
+
+final Logger _logger = Logger('FCM');
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -77,13 +80,13 @@ class FCM {
         );
 
         if (newSettings.authorizationStatus == AuthorizationStatus.authorized) {
-          print('User granted permission');
+          _logger.info('User granted permission');
         } else if (newSettings.authorizationStatus ==
             AuthorizationStatus.denied) {
-          print('User denied permission');
+          _logger.warning('User denied permission');
         }
       } else {
-        print('Permission already granted');
+        _logger.info('Permission already granted');
       }
     }
   }

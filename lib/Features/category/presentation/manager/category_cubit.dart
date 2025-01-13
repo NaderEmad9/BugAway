@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:bug_away/Core/errors/failures.dart';
 import 'package:bug_away/Features/register/domain/entities/user_model_entity.dart';
 
-import '../../domin/use_case/read_user_or_admin_from_fireStore_use_case.dart';
+import '../../domin/use_case/read_user_or_admin_from_fire_store_use_case.dart';
 
 part 'category_state.dart';
 

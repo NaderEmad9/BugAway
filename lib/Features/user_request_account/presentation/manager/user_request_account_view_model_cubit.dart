@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logging/logging.dart';
 import 'package:bug_away/Features/user_request_account/domain/use_cases/user_request_account_use_case.dart';
 
 import '../../../../Core/errors/failures.dart';
@@ -12,6 +13,7 @@ part 'user_request_account_view_model_state.dart';
 
 @injectable
 class UserRequestAccountCubit extends Cubit<UserRequestAccountState> {
+  final Logger _logger = Logger('UserRequestAccountCubit');
   UserRequestAccountUseCase userRequestAccountUseCase;
   UserRequestAccountCubit({required this.userRequestAccountUseCase})
       : super(UserRequestAccountViewModelInitial());
@@ -23,16 +25,12 @@ class UserRequestAccountCubit extends Cubit<UserRequestAccountState> {
   String? selectedValue;
   bool isLoaded = false;
   var fromKey = GlobalKey<FormState>();
-  TextEditingController userNameController =
-      TextEditingController(text: "pops");
-  TextEditingController phoneController =
-      TextEditingController(text: "01212442793");
-  TextEditingController emailController =
-      TextEditingController(text: "pops@gmail.com");
-  TextEditingController passwordController =
-      TextEditingController(text: "Mm#123456");
+  TextEditingController userNameController = TextEditingController(text: "");
+  TextEditingController phoneController = TextEditingController(text: "");
+  TextEditingController emailController = TextEditingController(text: "");
+  TextEditingController passwordController = TextEditingController(text: "");
   TextEditingController confirmPasswordController =
-      TextEditingController(text: "Mm#123456");
+      TextEditingController(text: "");
 
   //===============Image Profile Handle===================
   final ImagePicker picker = ImagePicker();
@@ -91,7 +89,7 @@ class UserRequestAccountCubit extends Cubit<UserRequestAccountState> {
         passwordController.text);
     either.fold((error) {
       isLoaded = false;
-      print(error.errorMessage.toString());
+      _logger.severe('Error: ${error.errorMessage}');
       emit(UserRequestAccountViewModelError(failure: error));
     }, (response) {
       isLoaded = false;
@@ -100,7 +98,7 @@ class UserRequestAccountCubit extends Cubit<UserRequestAccountState> {
     });
   }
 
-//===============Close Screen Handle=====================
+  //===============Close Screen Handle=====================
 
   void clearData() {
     userNameController.clear();
@@ -111,8 +109,4 @@ class UserRequestAccountCubit extends Cubit<UserRequestAccountState> {
     // animationController.dispose();
     image = null;
   }
-//   @override
-//   Future<void> close() {
-//     return super.close();
-//   }
 }

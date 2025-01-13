@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, depend_on_referenced_packages
+
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';

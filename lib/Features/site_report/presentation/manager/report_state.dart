@@ -3,7 +3,6 @@ import 'package:bug_away/Features/site_report/domain/entities/report_entity.dart
 abstract class ReportState {
   const ReportState();
 
-  @override
   List<Object> get props => [];
 }
 

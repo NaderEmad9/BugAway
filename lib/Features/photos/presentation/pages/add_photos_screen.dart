@@ -13,10 +13,10 @@ class AddPhotosScreen extends StatefulWidget {
   const AddPhotosScreen({super.key});
 
   @override
-  _AddPhotosScreenState createState() => _AddPhotosScreenState();
+  AddPhotosScreenState createState() => AddPhotosScreenState();
 }
 
-class _AddPhotosScreenState extends State<AddPhotosScreen> {
+class AddPhotosScreenState extends State<AddPhotosScreen> {
   List<File> images = [];
   List<int> selectedIndices = [];
   bool isMultiSelectMode = false;
@@ -35,6 +35,7 @@ class _AddPhotosScreenState extends State<AddPhotosScreen> {
       setState(() {
         images.add(File(pickedFile.path));
       });
+      // ignore: use_build_context_synchronously
       final reportViewModel = context.read<ReportViewModel>();
       reportViewModel.updatePhotos(images.map((e) => e.path).toList());
     }

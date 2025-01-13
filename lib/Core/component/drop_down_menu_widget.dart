@@ -1,50 +1,55 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../utils/colors.dart';
+import '../utils/strings.dart';
 
 class DropDownMenuWidget extends StatelessWidget {
-  final List<dynamic> list;
-  final dynamic selectedValue;
+  final List<String> list;
+  final String? selectedValue;
   final Function(String?) onChange;
-  const DropDownMenuWidget({super.key, this.selectedValue, required this.onChange, required this.list});
+
+  const DropDownMenuWidget({
+    super.key,
+    required this.list,
+    required this.selectedValue,
+    required this.onChange,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.all(8.r),
-      child: DropdownButtonFormField<dynamic>(
-        items: list.map((e) {
-          return DropdownMenuItem<dynamic>(
-            value: e,
+      padding: EdgeInsets.all(8.r),
+      child: DropdownButtonFormField<String>(
+        items: list.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
             child: Text(
-              e,
+              _getDisplayValue(value),
               style: Theme.of(context).textTheme.titleSmall,
             ),
           );
         }).toList(),
-        onChanged: (dynamic value) {
+        onChanged: (String? value) {
           onChange(value);
         },
         value: selectedValue,
         decoration: InputDecoration(
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: const BorderSide(
               color: ColorManager.whiteColor,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: const BorderSide(
               color: ColorManager.whiteColor,
               width: 1,
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: const BorderSide(
               color: ColorManager.whiteColor,
               width: 1,
@@ -52,9 +57,19 @@ class DropDownMenuWidget extends StatelessWidget {
           ),
         ),
         dropdownColor: ColorManager.backgroundColor,
-
         iconEnabledColor: ColorManager.whiteColor,
       ),
     );
+  }
+
+  String _getDisplayValue(String value) {
+    switch (value) {
+      case 'admin':
+        return StringManager.manager;
+      case 'user':
+        return StringManager.engineer;
+      default:
+        return value;
+    }
   }
 }

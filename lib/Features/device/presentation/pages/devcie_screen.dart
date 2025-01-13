@@ -7,7 +7,10 @@ import 'package:bug_away/Core/utils/colors.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bug_away/Features/site_report/presentation/manager/report_view_model.dart';
+import 'package:logging/logging.dart';
 import '../widgets/custome_date_table.dart';
+
+final Logger _logger = Logger('DeviceScreen');
 
 class DeviceScreen extends StatefulWidget {
   const DeviceScreen({super.key});
@@ -121,7 +124,7 @@ class _DeviceScreenState extends State<DeviceScreen>
           RoutesManger.routeNameDeviceInspectionScreen,
           arguments: code);
     } catch (e) {
-      print('this is the error : $e');
+      _logger.severe('Failed to scan barcode', e);
     }
   }
 }

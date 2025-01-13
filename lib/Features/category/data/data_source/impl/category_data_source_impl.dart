@@ -5,7 +5,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
+import 'package:logging/logging.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/firebase_utils.dart';
 import 'package:bug_away/Features/register/domain/entities/user_model_entity.dart';
 
@@ -16,6 +17,14 @@ import '../category_data_source.dart';
 
 @Injectable(as: CategoryDataSource)
 class CategoryDataSourceImpl implements CategoryDataSource {
+  final Logger _logger = Logger('CategoryDataSourceImpl');
+
+  CategoryDataSourceImpl() {
+    _logger.onRecord.listen((record) {
+      _logger.log(record.level, '${record.time}: ${record.message}');
+    });
+  }
+
   @override
   Future<Either<Failure, UserAndAdminModelDto>>
       readUserOrAdminFromFireStore() async {
@@ -36,7 +45,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      print(e.toString());
+      _logger.severe(e.toString());
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }
@@ -50,6 +59,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
           connectivityResult.contains(ConnectivityResult.mobile)) {
         var userLocal = SharedPrefsLocal.getData(key: StringManager.userAdmin);
 
+        // ignore: unused_local_variable
         var dataUser = await FirebaseUtils.getUserCollection(user.type ?? "")
             .doc(userLocal!.id)
             .update({
@@ -63,7 +73,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      print(e.toString());
+      _logger.severe(e.toString());
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }
@@ -116,6 +126,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
+      _logger.severe(e.toString());
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }
@@ -143,7 +154,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      print(e.toString());
+      _logger.severe(e.toString());
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }

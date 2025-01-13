@@ -1,12 +1,12 @@
 import 'dart:io';
+import 'package:bug_away/Core/utils/fcm_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
-import 'package:bug_away/Core/utils/fcm_helper.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Core/utils/firebase_utils.dart';
 import 'package:bug_away/Core/utils/notification_model.dart';
 import 'package:bug_away/Core/utils/strings.dart';
@@ -39,8 +39,9 @@ class InventoryDataSourceImpl implements InventoryDataSource {
   }
 
   Future<void> handleNotification(UserAndAdminModelDto adminData) async {
-    String title = "Materail Added Action";
-    String body = "Admin (${adminData.userName ?? ""}) is Added New Materail";
+    String title = "Material Added Action";
+    String body =
+        "Admin (${adminData.userName ?? ""}) has added a new material";
 
     List<UserAndAdminModelDto> adminList =
         await FirebaseUtils.getAdminOrUserTokenFromFireStore(
@@ -61,9 +62,10 @@ class InventoryDataSourceImpl implements InventoryDataSource {
         continue;
       }
       if (admin.fcmToken != null) {
-        var tokens = admin.fcmToken;
-        for (var token in tokens!) {
-          await NotificationService.sendNotification(token, title, body);
+        var tokens = admin.fcmToken!;
+        for (var token in tokens) {
+          await NotificationService.sendNotification(
+              deviceToken: token, title: title, body: body);
         }
       }
       await FirebaseUtils.saveNotification(
@@ -75,9 +77,10 @@ class InventoryDataSourceImpl implements InventoryDataSource {
         continue;
       }
       if (user.fcmToken != null) {
-        var tokens = user.fcmToken;
-        for (var token in tokens!) {
-          await NotificationService.sendNotification(token, title, body);
+        var tokens = user.fcmToken!;
+        for (var token in tokens) {
+          await NotificationService.sendNotification(
+              deviceToken: token, title: title, body: body);
         }
       }
       await FirebaseUtils.saveNotification(
@@ -121,7 +124,6 @@ class InventoryDataSourceImpl implements InventoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      print(e);
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }

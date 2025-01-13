@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -18,7 +20,7 @@ import '../../../../Core/component/drop_down_menu_widget.dart';
 import '../../../../Core/component/text_feild_custom.dart';
 import '../../../../Core/component/validators.dart';
 import '../manager/register_view_model_cubit.dart';
-import '../widgets/pick_Image_widget.dart';
+import '../widgets/pick_image_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -40,6 +42,15 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   @override
+  void dispose() {
+    if (bloc.animationController != null &&
+        bloc.animationController.isAnimating) {
+      bloc.animationController.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterViewModelCubit, RegisterViewModelState>(
       listener: (context, state) {
@@ -47,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen>
           DialogUtils.showAlertDialog(
               context: context,
               title: StringManager.success,
-              message: StringManager.registerSuccess,
+              message: StringManager.accountAcceptedSuccessfuly,
               posActionTitle: StringManager.ok,
               posAction: () {
                 Navigator.pushNamedAndRemoveUntil(context,
@@ -85,110 +96,115 @@ class _RegisterScreenState extends State<RegisterScreen>
                 Scaffold(
                   backgroundColor: Colors.transparent,
                   appBar: AppBar(
+                    elevation: 0,
                     backgroundColor: Colors.transparent,
+                    surfaceTintColor: Colors.transparent,
                   ),
                   body: SingleChildScrollView(
                     child: Form(
                       key: bloc.fromKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          AnimatedOpacity(
-                            duration: const Duration(seconds: 2),
-                            opacity: bloc.opacity,
-                            curve: Curves.easeIn,
-                            child: Center(
-                              child: GestureDetector(
-                                onTap: bloc.image == null
-                                    ? null
-                                    : _showImagePickerDialog,
-                                child: PickImageWidgetRegister(
-                                  imagePath: bloc.image,
-                                  icon: Icons.add_a_photo,
-                                  onImagePicked: bloc.pickImage,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            AnimatedOpacity(
+                              duration: const Duration(seconds: 2),
+                              opacity: bloc.opacity,
+                              curve: Curves.easeIn,
+                              child: Center(
+                                child: GestureDetector(
+                                  onTap: bloc.image == null
+                                      ? null
+                                      : _showImagePickerDialog,
+                                  child: PickImageWidgetRegister(
+                                    imagePath: bloc.image,
+                                    icon: Icons.add_a_photo,
+                                    onImagePicked: bloc.pickImage,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 18.h),
-                          SlideTransition(
-                            position: bloc.slideAnimation,
-                            child: DropDownMenuWidget(
-                              list: bloc.list,
-                              selectedValue: bloc.selectedValue,
-                              onChange: (String? value) {
-                                bloc.selectedValue = value;
-                                setState(() {});
-                              },
+                            SizedBox(height: 18.h),
+                            SlideTransition(
+                              position: bloc.slideAnimation,
+                              child: DropDownMenuWidget(
+                                list: bloc.list,
+                                selectedValue: bloc.selectedValue,
+                                onChange: (String? value) {
+                                  bloc.selectedValue = value;
+                                  setState(() {});
+                                },
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 8.h),
-                          SlideTransition(
-                            position: bloc.slideAnimation,
-                            child: CustomTextFormField(
-                              hint: StringManager.userName,
-                              validator: (val) =>
-                                  AppValidators.validateUsername(val),
-                              controller: bloc.userNameController,
+                            SizedBox(height: 8.h),
+                            SlideTransition(
+                              position: bloc.slideAnimation,
+                              child: CustomTextFormField(
+                                hint: StringManager.userName,
+                                validator: (val) =>
+                                    AppValidators.validateUsername(val),
+                                controller: bloc.userNameController,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 8.h),
-                          SlideTransition(
-                            position: bloc.slideAnimation,
-                            child: CustomTextFormField(
-                              hint: StringManager.phone,
-                              validator: (val) =>
-                                  AppValidators.validatePhoneNumber(val),
-                              controller: bloc.phoneController,
+                            SizedBox(height: 8.h),
+                            SlideTransition(
+                              position: bloc.slideAnimation,
+                              child: CustomTextFormField(
+                                hint: StringManager.phone,
+                                validator: (val) =>
+                                    AppValidators.validatePhoneNumber(val),
+                                controller: bloc.phoneController,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 8.h),
-                          SlideTransition(
-                            position: bloc.slideAnimation,
-                            child: CustomTextFormField(
-                              hint: StringManager.email,
-                              validator: (val) =>
-                                  AppValidators.validateEmail(val),
-                              controller: bloc.emailController,
+                            SizedBox(height: 8.h),
+                            SlideTransition(
+                              position: bloc.slideAnimation,
+                              child: CustomTextFormField(
+                                hint: StringManager.email,
+                                validator: (val) =>
+                                    AppValidators.validateEmail(val),
+                                controller: bloc.emailController,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 8.h),
-                          SlideTransition(
-                            position: bloc.slideAnimation,
-                            child: CustomTextFormField(
-                              hint: StringManager.password,
-                              validator: (val) =>
-                                  AppValidators.validatePassword(val),
-                              controller: bloc.passwordController,
-                              isSecured: true,
+                            SizedBox(height: 8.h),
+                            SlideTransition(
+                              position: bloc.slideAnimation,
+                              child: CustomTextFormField(
+                                hint: StringManager.password,
+                                validator: (val) =>
+                                    AppValidators.validatePassword(val),
+                                controller: bloc.passwordController,
+                                isSecured: true,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 8.h),
-                          SlideTransition(
-                            position: bloc.slideAnimation,
-                            child: CustomTextFormField(
-                              hint: StringManager.confirmPassword,
-                              validator: (val) =>
-                                  AppValidators.validateConfirmPassword(
-                                      val, bloc.passwordController.text),
-                              controller: bloc.confirmPasswordController,
-                              isSecured: true,
+                            SizedBox(height: 8.h),
+                            SlideTransition(
+                              position: bloc.slideAnimation,
+                              child: CustomTextFormField(
+                                hint: StringManager.confirmPassword,
+                                validator: (val) =>
+                                    AppValidators.validateConfirmPassword(
+                                        val, bloc.passwordController.text),
+                                controller: bloc.confirmPasswordController,
+                                isSecured: true,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 15.h),
-                          SlideTransition(
-                            position: bloc.slideAnimation,
-                            child: ButtonCustom(
-                              buttonName: StringManager.addAccount,
-                              onTap: () {
-                                if (bloc.fromKey.currentState!.validate()) {
-                                  bloc.register();
-                                }
-                              },
+                            SizedBox(height: 15.h),
+                            SlideTransition(
+                              position: bloc.slideAnimation,
+                              child: ButtonCustom(
+                                buttonName: StringManager.addAccount,
+                                onTap: () {
+                                  if (bloc.fromKey.currentState!.validate()) {
+                                    bloc.register();
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 15.h),
-                        ],
+                            SizedBox(height: 15.h),
+                          ],
+                        ),
                       ),
                     ),
                   ),

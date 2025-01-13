@@ -9,10 +9,10 @@ class QuantityUnitField extends StatefulWidget {
   const QuantityUnitField({super.key});
 
   @override
-  _QuantityUnitFieldState createState() => _QuantityUnitFieldState();
+  QuantityUnitFieldState createState() => QuantityUnitFieldState();
 }
 
-class _QuantityUnitFieldState extends State<QuantityUnitField> {
+class QuantityUnitFieldState extends State<QuantityUnitField> {
   bool isFocused = false;
 
   @override
@@ -34,7 +34,7 @@ class _QuantityUnitFieldState extends State<QuantityUnitField> {
                 decoration: InputDecoration(
                   hintText: StringManager.quantity,
                   hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: ColorManager.greyShade3,
+                        color: ColorManager.greyShade4,
                       ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.r),
@@ -88,7 +88,7 @@ class _QuantityUnitFieldState extends State<QuantityUnitField> {
                     style: Theme.of(context)
                         .textTheme
                         .titleSmall!
-                        .copyWith(color: ColorManager.greyShade3)),
+                        .copyWith(color: ColorManager.greyShade4)),
                 value: InventoryViewModelCubit.get(context).unit,
                 items: ['Pairs', 'Units', 'Kg', 'Liters']
                     .map((unit) => DropdownMenuItem(
@@ -108,7 +108,7 @@ class _QuantityUnitFieldState extends State<QuantityUnitField> {
                 decoration: InputDecoration(
                   hintText: StringManager.unit,
                   hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: ColorManager.greyShade3,
+                        color: ColorManager.greyShade4,
                       ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.r),

@@ -21,7 +21,7 @@ import '../Features/account_request_admin/domain/repositories/account_request_re
     as _i645;
 import '../Features/account_request_admin/domain/use_cases/accept_requests_user_case.dart'
     as _i630;
-import '../Features/account_request_admin/domain/use_cases/decline_requests_user_case%20copy.dart'
+import '../Features/account_request_admin/domain/use_cases/decline_requests_user_case.dart'
     as _i300;
 import '../Features/account_request_admin/domain/use_cases/delete_requests_user_case.dart'
     as _i687;
@@ -38,9 +38,9 @@ import '../Features/category/domin/repo/category_repo.dart' as _i78;
 import '../Features/category/domin/use_case/edit_image.dart' as _i43;
 import '../Features/category/domin/use_case/edit_user_data_use_case.dart'
     as _i706;
-import '../Features/category/domin/use_case/read_user_or_admin_from_fireStore_use_case.dart'
+import '../Features/category/domin/use_case/read_user_or_admin_from_fire_store_use_case.dart'
     as _i899;
-import '../Features/category/domin/use_case/removeFcm.dart' as _i665;
+import '../Features/category/domin/use_case/remove_fcm.dart' as _i665;
 import '../Features/category/presentation/manager/category_cubit.dart' as _i386;
 import '../Features/category/profile/presentation/manager/profile_cubit.dart'
     as _i833;
@@ -104,7 +104,7 @@ import '../Features/register/presentation/manager/register_view_model_cubit.dart
     as _i451;
 import '../Features/reports/data/data_sources/get_report_of_site_data_source.dart'
     as _i329;
-import '../Features/reports/data/data_sources/get_report_of_site_dataSource_impl.dart'
+import '../Features/reports/data/data_sources/get_report_of_site_data_source_impl.dart'
     as _i624;
 import '../Features/reports/data/data_sources/get_sites_of_user_data_source.dart'
     as _i924;

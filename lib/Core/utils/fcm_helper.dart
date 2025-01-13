@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:googleapis_auth/auth_io.dart' as auth;
+import 'package:logging/logging.dart';
 
 class NotificationService {
+  static final Logger _logger = Logger('NotificationService');
+
   static Future<String> getAccessToken() async {
     final serviceAccountJson = {
       "type": "service_account",
@@ -39,8 +42,11 @@ class NotificationService {
     return credentials.accessToken.data;
   }
 
-  static Future<void> sendNotification(
-      String deviceToken, String title, String body) async {
+  static Future<void> sendNotification({
+    required String deviceToken,
+    required String title,
+    required String body,
+  }) async {
     final String accessToken = await getAccessToken();
     String endpointFCM =
         'https://fcm.googleapis.com/v1/projects/chat-app-3654c/messages:send';
@@ -62,11 +68,11 @@ class NotificationService {
       },
       body: jsonEncode(message),
     );
-    print(response.statusCode);
+    _logger.info('Response status: ${response.statusCode}');
     if (response.statusCode == 200) {
-      print('Notification sent successfully');
+      _logger.info('Notification sent successfully');
     } else {
-      print('Failed to send notification');
+      _logger.severe('Failed to send notification: ${response.body}');
     }
   }
 }

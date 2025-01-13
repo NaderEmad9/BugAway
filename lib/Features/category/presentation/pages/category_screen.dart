@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/component/custom_dialog.dart';
-import 'package:bug_away/Core/utils/SharedPrefsLocal.dart';
+import 'package:bug_away/Core/utils/shared_prefs_local.dart';
 import 'package:bug_away/Features/category/data/models/category_model.dart';
 import 'package:bug_away/Features/category/presentation/manager/category_cubit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -43,7 +43,10 @@ class _CategoryScreenState extends State<CategoryScreen>
 
   @override
   void dispose() {
-    bloc.animationController?.dispose();
+    if (bloc.animationController != null &&
+        bloc.animationController!.isAnimating) {
+      bloc.animationController?.dispose();
+    }
     super.dispose();
   }
 
@@ -111,7 +114,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                     actions: [
                       IconButton(
                         icon: const FaIcon(
-                          FontAwesomeIcons.signOut,
+                          FontAwesomeIcons.arrowRightFromBracket,
                         ),
                         onPressed: () {
                           DialogUtils.showAlertDialog(
@@ -125,6 +128,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                               SharedPrefsLocal.prefs.clear();
                               FirebaseAuth.instance.signOut();
                               Navigator.pushNamedAndRemoveUntil(
+                                // ignore: use_build_context_synchronously
                                 context,
                                 RoutesManger.routeNameLogin,
                                 (route) => false,
@@ -261,9 +265,9 @@ class _CategoryScreenState extends State<CategoryScreen>
 String getDisplayUserType(String userType) {
   switch (userType.toLowerCase()) {
     case 'admin':
-      return 'Admin';
+      return StringManager.manager;
     case 'user':
-      return 'Engineer';
+      return StringManager.engineer;
     default:
       return userType;
   }

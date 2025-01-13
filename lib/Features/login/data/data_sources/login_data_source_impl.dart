@@ -6,13 +6,13 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bug_away/Core/errors/failures.dart';
-import 'package:bug_away/Core/utils/FCM.dart';
+import 'package:bug_away/Core/utils/fcm.dart';
 import 'package:bug_away/Core/utils/firebase_utils.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/login/data/data_sources/login_data_source.dart';
 import 'package:bug_away/Features/register/data/models/user_model_dto.dart';
 
-import '../../../../Core/utils/SharedPrefsLocal.dart';
+import '../../../../Core/utils/shared_prefs_local.dart';
 
 @Injectable(as: LoginDataSource)
 class LoginDataSourceImpl implements LoginDataSource {
