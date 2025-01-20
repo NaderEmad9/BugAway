@@ -45,7 +45,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      _logger.severe(e.toString());
+      Future.microtask(() => _logger.severe(e.toString()));
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }
@@ -73,7 +73,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      _logger.severe(e.toString());
+      Future.microtask(() => _logger.severe(e.toString()));
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }
@@ -99,6 +99,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
             await ref.delete();
           } catch (error) {
             if (error.toString().contains('object-not-found')) {
+              // Handle object not found error
             } else {
               rethrow;
             }
@@ -126,7 +127,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      _logger.severe(e.toString());
+      Future.microtask(() => _logger.severe(e.toString()));
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }
@@ -154,7 +155,7 @@ class CategoryDataSourceImpl implements CategoryDataSource {
         return Left(Failure(errorMessage: StringManager.networkError));
       }
     } catch (e) {
-      _logger.severe(e.toString());
+      Future.microtask(() => _logger.severe(e.toString()));
       return Left(Failure(errorMessage: StringManager.somethingWentWrong));
     }
   }

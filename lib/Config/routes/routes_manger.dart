@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bug_away/Features/category/presentation/pages/category_screen.dart';
 import 'package:bug_away/Features/chat/presentation/pages/chat_screen.dart';
-import 'package:bug_away/Features/device_inspection/presentation/pages/device_inspection.dart';
 import 'package:bug_away/Features/forgotPassword/presentation/pages/forgot_pass_screen.dart';
 import 'package:bug_away/Features/preview_report/presentation/pages/preview_report_screen.dart';
 import 'package:bug_away/Features/register/presentation/pages/register_screen.dart';
@@ -42,7 +41,6 @@ class RoutesManger {
     routeNameForgotPassScreen: (context) => ForgotPassScreen(),
     routeNameAddPhotosScreen: (context) => const AddPhotosScreen(),
     routeNamePreviewReport: (context) => const PreviewReportScreen(),
-    routeNameDeviceInspectionScreen: (context) => const DeviceInspection(),
     routeNameInventory: (context) => const InventoryScreen(),
     routeNameReportsOfAllUsersForAdmin: (context) => const AllUsers(),
     routeNameSitesOfUserForAdmin: (context) => const SitesOFUser(),

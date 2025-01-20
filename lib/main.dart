@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/component/error_widget.dart';
-import 'package:bug_away/Core/my_bloc_observer.dart';
 import 'package:bug_away/Core/utils/fcm.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/account_request_admin/presentation/manager/requests_screen_viewmodel_cubit.dart';
@@ -48,7 +47,7 @@ void main() async {
   ]);
 
   // Set up BLoC observer for debugging
-  Bloc.observer = MyBlocObserver();
+  // Bloc.observer = MyBlocObserver();
 
   // Initialize Shared Preferences
   await SharedPrefsLocal.init();

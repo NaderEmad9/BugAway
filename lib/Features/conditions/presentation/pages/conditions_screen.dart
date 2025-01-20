@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bug_away/Core/utils/colors.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:bug_away/Features/site_report/presentation/manager/report_view_model.dart';
+import 'package:bug_away/Core/component/button_custom.dart';
 
 class ConditionsScreen extends StatefulWidget {
   const ConditionsScreen({super.key});
@@ -51,7 +52,7 @@ class _ConditionsScreenState extends State<ConditionsScreen>
 
   @override
   void dispose() {
-    _animationController.dispose(); // Clean up the controller when done
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -61,19 +62,17 @@ class _ConditionsScreenState extends State<ConditionsScreen>
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Text(StringManager.conditions,
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(fontSize: 25.sp)),
+            style: Theme.of(context).textTheme.titleLarge),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0.sp),
+        padding: EdgeInsets.all(22.0.sp),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Add SlideTransition for the TextField
               SlideTransition(
                 position: _slideAnimation,
                 child: TextField(
@@ -98,29 +97,32 @@ class _ConditionsScreenState extends State<ConditionsScreen>
                         .textTheme
                         .titleSmall!
                         .copyWith(color: ColorManager.greyShade4),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                      borderSide: const BorderSide(
+                        color: ColorManager.primaryColor,
+                      ),
+                    ),
                   ),
                   maxLines: 15,
                 ),
               ),
               SizedBox(height: 20.h),
               Center(
-                child: ElevatedButton(
-                  onPressed: () {
+                child: ButtonCustom(
+                  buttonName: StringManager.save,
+                  onTap: () {
                     Navigator.pop(context, _conditionsController.text);
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorManager.primaryColor,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
-                    textStyle: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  child: Text(
-                    'Save Conditions',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
+                  textStyle: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
             ],

@@ -44,7 +44,6 @@ class RequestsScreenViewmodelCubit extends Cubit<RequestsScreenViewmodelState> {
           dateTime = formatDateTime(e.data().dateTime);
           return e.data();
         }).toList();
-
         emit(RequestsScreenViewmodelSuccess());
       });
     });
@@ -56,7 +55,6 @@ class RequestsScreenViewmodelCubit extends Cubit<RequestsScreenViewmodelState> {
     var either = await acceptRequestsUseCase.acceptRequests(user);
     either.fold((l) {
       isLoading = false;
-
       emit(AcceptRequestsScreenViewmodelError(error: l));
     }, (r) {
       isLoading = false;
@@ -70,7 +68,6 @@ class RequestsScreenViewmodelCubit extends Cubit<RequestsScreenViewmodelState> {
     var either = await declineRequestsUseCase.declineRequests(user);
     either.fold((l) {
       isLoading = false;
-
       emit(DeclineRequestsScreenViewmodelError(error: l));
     }, (r) {
       isLoading = false;
@@ -84,7 +81,6 @@ class RequestsScreenViewmodelCubit extends Cubit<RequestsScreenViewmodelState> {
     var either = await deleteRequestsUseCase.deleteRequests(id);
     either.fold((l) {
       isLoading = false;
-
       emit(DeleteRequestsScreenViewmodelError(error: l));
     }, (r) {
       isLoading = false;

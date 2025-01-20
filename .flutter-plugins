@@ -1,4 +1,8 @@
 # This is a generated file; do not edit or check into version control.
+camera=/Users/naderemad/.pub-cache/hosted/pub.dev/camera-0.11.0+2/
+camera_android_camerax=/Users/naderemad/.pub-cache/hosted/pub.dev/camera_android_camerax-0.6.13/
+camera_avfoundation=/Users/naderemad/.pub-cache/hosted/pub.dev/camera_avfoundation-0.9.18/
+camera_web=/Users/naderemad/.pub-cache/hosted/pub.dev/camera_web-0.3.5/
 cloud_firestore=/Users/naderemad/.pub-cache/hosted/pub.dev/cloud_firestore-5.5.1/
 cloud_firestore_web=/Users/naderemad/.pub-cache/hosted/pub.dev/cloud_firestore_web-4.3.5/
 connectivity_plus=/Users/naderemad/.pub-cache/hosted/pub.dev/connectivity_plus-6.1.1/
@@ -36,6 +40,7 @@ path_provider_foundation=/Users/naderemad/.pub-cache/hosted/pub.dev/path_provide
 path_provider_linux=/Users/naderemad/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
 path_provider_windows=/Users/naderemad/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
 printing=/Users/naderemad/.pub-cache/hosted/pub.dev/printing-5.13.4/
+qr_code_scanner=/Users/naderemad/.pub-cache/hosted/pub.dev/qr_code_scanner-0.4.0/
 shared_preferences=/Users/naderemad/.pub-cache/hosted/pub.dev/shared_preferences-2.3.3/
 shared_preferences_android=/Users/naderemad/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.0/
 shared_preferences_foundation=/Users/naderemad/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/

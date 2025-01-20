@@ -4,6 +4,7 @@ class StringManager {
   static const String accountAcceptedSuccessfuly =
       "Account accepted successfully";
   static const String accountRequests = "Account Requests";
+  static const String accountCreated = "Account Created Successfully";
   static const String add = "Add";
   static const String addAccount = "Add Account";
   static const String addMaterial = "Add Material";
@@ -46,6 +47,7 @@ class StringManager {
   static const String device = "Device";
   static const String deviceID = "Device ID";
   static const String deviceInspection = "Device inspection";
+  static const String deviceScan = "Device scan";
   static const String deviceLastScan = "Last scan";
   static const String devices = "Devices";
 
@@ -53,6 +55,7 @@ class StringManager {
   static const String edit = "Edit";
   static const String editMaterial = "Edit material";
   static const String editProfile = "Edit profile";
+  static const String enterEmailHint = "Enter your email";
   static const String email = "Email";
   static const String emailInUse = "Email already in use";
   static const String engineer = "Engineer";
@@ -87,6 +90,7 @@ class StringManager {
   static const String invalidCredential = "Invalid credential";
 
   // L
+  static const String location = "Location: ";
   static const String login = "Login";
   static const String loginFailed = "Login failed. Please try again.";
   static const String loginSuccess = "Login successful.";
@@ -127,8 +131,8 @@ class StringManager {
 
   // P
   static const String password = "Password";
-  static const String passwordResetSuccess =
-      "Password reset successful. Check your email.";
+  static const String resetEmailSucess =
+      "An email has been sent to reset your password.";
   static const String phone = "Phone";
   static const String photos = "Photos";
   static const String previewReport = "Preview report";
@@ -146,6 +150,7 @@ class StringManager {
   static const String reportCreated = "Report created successfully";
   static const String reportDeleted = "Report deleted successfully";
   static const String reportSubmitSuccess = "Report submitted successfully";
+  static const String report = "Report";
   static const String reports = "Reports";
   static const String reportsSubmittedBy = "Reports submitted by:";
   static const String requestAccount = "Request account";
@@ -165,15 +170,17 @@ class StringManager {
   static const String selected = "Selected";
   static const String selectUnit = "Select a unit";
   static const String selectUser = "Please choose a role to login";
+  static const String selectEngineerToAssign = "Choose Engineer to Assign";
   static const String send = "Send";
   static const String sendMessage = "Send";
   static const String signatures = "Signatures";
+  static const String signaturePad = "Signature pad";
   static const String signaturesRequired = "Signatures required";
   static const String sites = "Sites";
   static const String siteAddSuccess = "Site added successfully";
   static const String siteAssignments = "Choose a user to assign the site";
   static const String siteDeleteSuccess = "Site deleted successfully";
-  static const String siteLocation = "Site location:";
+  static const String siteLocation = "Site location";
   static const String siteName = "Site name";
   static const String siteReport = "Site report";
   static const String siteReports = "Site reports";
@@ -183,6 +190,7 @@ class StringManager {
   static const String success = "Success";
 
   // T
+  static const String teamHub = "Team Hub";
   static const String takePhoto = "Take a photo";
   static const String tokenRetrieveFailed = "Failed to retrieve token.";
   static const String typeMessage = "Type your message...";

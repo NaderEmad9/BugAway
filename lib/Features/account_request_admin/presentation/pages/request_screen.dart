@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:bug_away/Core/component/custom_dialog.dart';
 import 'package:bug_away/Core/component/lottie_loading_widget.dart';
 import 'package:bug_away/Core/utils/colors.dart';
 import 'package:bug_away/Core/utils/images.dart';
@@ -26,42 +25,7 @@ class RequestScreen extends StatelessWidget {
     viewModel.getRequest();
     return BlocConsumer<RequestsScreenViewmodelCubit,
         RequestsScreenViewmodelState>(listener: (context, state) {
-      if (state is RequestsScreenViewmodelError) {
-        DialogUtils.showAlertDialog(
-          context: context,
-          title: StringManager.failed,
-          message: state.error.errorMessage,
-          posActionTitle: StringManager.ok,
-        );
-      } else if (state is AcceptRequestsScreenViewmodelError) {
-        DialogUtils.showAlertDialog(
-          context: context,
-          title: StringManager.failed,
-          message: state.error.errorMessage,
-          posActionTitle: StringManager.ok,
-        );
-      } else if (state is AcceptRequestsScreenViewmodelSuccess) {
-        DialogUtils.showAlertDialog(
-          context: context,
-          title: StringManager.success,
-          message: StringManager.acceptedSuccessfully,
-          posActionTitle: StringManager.ok,
-        );
-      } else if (state is DeclineRequestsScreenViewmodelSuccess) {
-        DialogUtils.showAlertDialog(
-          context: context,
-          title: StringManager.success,
-          message: StringManager.declinedSuccessfully,
-          posActionTitle: StringManager.ok,
-        );
-      } else if (state is DeleteRequestsScreenViewmodelSuccess) {
-        DialogUtils.showAlertDialog(
-          context: context,
-          title: StringManager.success,
-          message: StringManager.deleteSuccess,
-          posActionTitle: StringManager.ok,
-        );
-      }
+      // Remove dialog calls
     }, builder: (context, state) {
       return ModalProgressHUD(
         opacity: 0.4,
@@ -190,7 +154,7 @@ class RequestScreen extends StatelessWidget {
                                                     "${StringManager.phone}: ${request.phone}"),
                                             LabelText(
                                                 label:
-                                                    "${StringManager.role}: ${request.type}"),
+                                                    "${StringManager.role}: ${getDisplayUserType(request.type!)}"),
                                             if (request.status == "Accepted" ||
                                                 request.status == "Rejected")
                                               const SizedBox()
@@ -317,5 +281,16 @@ class RequestScreen extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+String getDisplayUserType(String userType) {
+  switch (userType.toLowerCase()) {
+    case 'admin':
+      return StringManager.manager;
+    case 'user':
+      return StringManager.engineer;
+    default:
+      return userType;
   }
 }

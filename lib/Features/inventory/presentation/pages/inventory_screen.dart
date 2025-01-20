@@ -1,6 +1,7 @@
 import 'package:bug_away/Core/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:bug_away/Core/component/custom_dialog.dart';
 import 'package:bug_away/Core/component/lottie_loading_widget.dart';
@@ -85,6 +86,35 @@ class InventoryScreenState extends State<InventoryScreen>
               surfaceTintColor: Colors.transparent,
               elevation: 0,
               title: const Text(StringManager.inventory),
+              actions: [
+                if (bloc.user.type == 'admin')
+                  IconButton(
+                    padding: const EdgeInsets.only(
+                      right: 5,
+                    ),
+                    icon: const FaIcon(
+                      FontAwesomeIcons.plus,
+                      size: 26,
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AddedOrEditMaterailDialog(
+                            buttonName: StringManager.add,
+                            title: StringManager.addMaterial,
+                            onTap: () {
+                              if (bloc.formKey.currentState!.validate()) {
+                                bloc.addedMaterails();
+                                Navigator.pop(context);
+                              }
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+              ],
             ),
             body: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -150,34 +180,6 @@ class InventoryScreenState extends State<InventoryScreen>
                 ],
               ),
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-            floatingActionButton: bloc.user.type == 'admin'
-                ? FloatingActionButton(
-                    backgroundColor: ColorManager.primaryColor,
-                    shape: const CircleBorder(),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AddedOrEditMaterailDialog(
-                            buttonName: StringManager.add,
-                            title: StringManager.addMaterial,
-                            onTap: () {
-                              if (bloc.formKey.currentState!.validate()) {
-                                bloc.addedMaterails();
-                                Navigator.pop(context);
-                              }
-                            },
-                          );
-                        },
-                      );
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      color: ColorManager.whiteColor,
-                    ),
-                  )
-                : null,
           ),
         );
       },

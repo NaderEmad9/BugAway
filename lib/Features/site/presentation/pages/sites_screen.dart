@@ -1,6 +1,7 @@
 import 'package:bug_away/Core/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:bug_away/Core/component/search_field_widget.dart';
 import 'package:bug_away/Core/utils/colors.dart';
@@ -36,9 +37,11 @@ class _SitesScreenState extends State<SitesScreen>
     bloc.doAnimation(this);
 
     Future.delayed(const Duration(seconds: 3), () {
-      setState(() {
-        showEmptyState = true;
-      });
+      if (mounted) {
+        setState(() {
+          showEmptyState = true;
+        });
+      }
     });
 
     super.initState();
@@ -106,10 +109,28 @@ class _SitesScreenState extends State<SitesScreen>
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            elevation: 0,
             backgroundColor: Colors.transparent,
             surfaceTintColor: Colors.transparent,
-            elevation: 0,
             title: const Text(StringManager.sites),
+            actions: [
+              if (bloc.user.type == 'admin')
+                IconButton(
+                  padding: const EdgeInsets.only(
+                    right: 5,
+                  ),
+                  icon: const FaIcon(
+                    FontAwesomeIcons.plus,
+                    size: 26,
+                  ),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const AddNewSite(),
+                    );
+                  },
+                ),
+            ],
           ),
           body: ModalProgressHUD(
             opacity: 0.4,
@@ -120,66 +141,44 @@ class _SitesScreenState extends State<SitesScreen>
               children: [
                 SearchFieldWidget(
                   controller: bloc.searchController,
-                  onChanged: (value) => bloc.filterSites(value),
+                  onChanged: (value) {
+                    bloc.filterSites(value);
+                  },
                 ),
                 Expanded(
-                  child: Stack(
-                    children: [
-                      if (!bloc.isLoading &&
-                          bloc.searchedSites.isEmpty &&
-                          showEmptyState)
-                        const EmptyStateWidget(
-                          lottiePath: ImageManager.emptySearchLottie,
-                          message: StringManager.noSitesFound,
-                        )
-                      else
-                        ListView.builder(
-                          itemCount: bloc.searchedSites.length,
-                          itemBuilder: (context, index) {
-                            final site = bloc.searchedSites[index];
-                            return SiteInfoItem(
-                              site: site,
-                              isAdmin: bloc.user.type == 'admin',
-                              onDelete: () {
-                                DialogUtils.showAlertDialog(
-                                  context: context,
-                                  title: StringManager.confirmDelete,
-                                  message: StringManager.confirmDeleteMessage,
-                                  posActionTitle: StringManager.yes,
-                                  posAction: () {
-                                    bloc.deleteSite(site);
-                                    Navigator.pop(context);
+                  child: state is SiteLoadingState
+                      ? Container()
+                      : state is SiteErrorState
+                          ? const Center(
+                              child: EmptyStateWidget(
+                                lottiePath: ImageManager.emptySearchLottie,
+                                message: StringManager.noSitesFound,
+                              ),
+                            )
+                          : bloc.searchedSites.isEmpty
+                              ? const Center(
+                                  child: EmptyStateWidget(
+                                    lottiePath: ImageManager.emptySearchLottie,
+                                    message: StringManager.noSitesFound,
+                                  ),
+                                )
+                              : ListView.builder(
+                                  itemCount: bloc.searchedSites.length,
+                                  itemBuilder: (context, index) {
+                                    final site = bloc.searchedSites[index];
+                                    return SiteInfoItem(
+                                      site: site,
+                                      onDelete: () {
+                                        bloc.deleteSite(site);
+                                      },
+                                      isAdmin: bloc.user.type == 'admin',
+                                    );
                                   },
-                                  negActionTitle: StringManager.no,
-                                );
-                              },
-                            );
-                          },
-                        ),
-                    ],
-                  ),
+                                ),
                 ),
               ],
             ),
           ),
-          floatingActionButton: bloc.user.type == 'admin'
-              ? FloatingActionButton(
-                  backgroundColor: ColorManager.primaryColor,
-                  shape: const CircleBorder(),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AddNewSite();
-                      },
-                    );
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    color: ColorManager.whiteColor,
-                  ),
-                )
-              : null,
         );
       },
     );

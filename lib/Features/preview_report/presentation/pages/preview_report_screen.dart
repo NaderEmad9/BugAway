@@ -1,6 +1,7 @@
 // ignore_for_file: unused_element
 
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -160,7 +161,7 @@ class _PreviewReportScreenState extends State<PreviewReportScreen>
                   .copyWith(fontSize: 25.sp)),
           actions: [
             IconButton(
-              icon: const Icon(Icons.download),
+              icon: const Icon(CupertinoIcons.cloud_download),
               onPressed: () async {
                 final args = ModalRoute.of(context)?.settings.arguments
                     as Map<String, dynamic>?;

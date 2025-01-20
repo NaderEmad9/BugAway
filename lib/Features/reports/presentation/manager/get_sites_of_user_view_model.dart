@@ -19,20 +19,21 @@ class GetSitesOfUsersViewModel extends Cubit<GetSitesState> {
   double opacity = 1.0;
 
   late AnimationController animationController;
-  late Animation<Offset> slideAnimation;
+  late Animation<double> fadeAnimation;
 
   void initializeAnimation(SingleTickerProviderStateMixin single) {
     animationController = AnimationController(
         vsync: single, duration: const Duration(seconds: 1));
 
-    slideAnimation =
-        Tween<Offset>(begin: const Offset(-2, 0), end: const Offset(0, 0))
-            .animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: Curves.easeInOut,
-      ),
+    fadeAnimation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeInOut,
     );
+    animationController.forward();
+  }
+
+  void disposeAnimation() {
+    animationController.dispose();
   }
 
   Future<void> getSites(String userId) async {

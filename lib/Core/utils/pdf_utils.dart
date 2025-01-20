@@ -22,6 +22,9 @@ class PdfUtils {
     final fontData = await rootBundle.load('assets/fonts/Roboto-Regular.ttf');
     final ttf = pw.Font.ttf(fontData);
 
+    final primaryColorHex =
+        ColorManager.primaryColor.toHex(leadingHashSign: false);
+
     pdf.addPage(
       pw.MultiPage(
         build: (pw.Context context) {
@@ -35,15 +38,14 @@ class PdfUtils {
                     style: pw.TextStyle(
                       fontSize: 24,
                       fontWeight: pw.FontWeight.bold,
-                      color:
-                          PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                      color: PdfColor.fromHex(primaryColorHex),
                       font: ttf,
                     ),
                   ),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(
@@ -51,14 +53,14 @@ class PdfUtils {
                   style: pw.TextStyle(
                     fontSize: 20,
                     fontWeight: pw.FontWeight.bold,
-                    color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                    color: PdfColor.fromHex(primaryColorHex),
                     font: ttf,
                   ),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(notes, style: pw.TextStyle(fontSize: 16, font: ttf)),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(
@@ -66,7 +68,7 @@ class PdfUtils {
                   style: pw.TextStyle(
                     fontSize: 20,
                     fontWeight: pw.FontWeight.bold,
-                    color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                    color: PdfColor.fromHex(primaryColorHex),
                     font: ttf,
                   ),
                 ),
@@ -74,7 +76,7 @@ class PdfUtils {
                 pw.Text(conditions,
                     style: pw.TextStyle(fontSize: 16, font: ttf)),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(
@@ -82,7 +84,7 @@ class PdfUtils {
                   style: pw.TextStyle(
                     fontSize: 20,
                     fontWeight: pw.FontWeight.bold,
-                    color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                    color: PdfColor.fromHex(primaryColorHex),
                     font: ttf,
                   ),
                 ),
@@ -95,7 +97,7 @@ class PdfUtils {
                       .toList(),
                 ),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(
@@ -103,7 +105,7 @@ class PdfUtils {
                   style: pw.TextStyle(
                     fontSize: 20,
                     fontWeight: pw.FontWeight.bold,
-                    color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                    color: PdfColor.fromHex(primaryColorHex),
                     font: ttf,
                   ),
                 ),
@@ -116,7 +118,7 @@ class PdfUtils {
                       .toList(),
                 ),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(
@@ -124,7 +126,7 @@ class PdfUtils {
                   style: pw.TextStyle(
                     fontSize: 20,
                     fontWeight: pw.FontWeight.bold,
-                    color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                    color: PdfColor.fromHex(primaryColorHex),
                     font: ttf,
                   ),
                 ),
@@ -139,8 +141,7 @@ class PdfUtils {
                             decoration: pw.BoxDecoration(
                               borderRadius: pw.BorderRadius.circular(12),
                               border: pw.Border.all(
-                                color: PdfColor.fromHex(
-                                    ColorManager.primaryColor.toHex()),
+                                color: PdfColor.fromHex(primaryColorHex),
                                 width: 2,
                               ),
                             ),
@@ -156,7 +157,7 @@ class PdfUtils {
                       .toList(),
                 ),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(
@@ -164,7 +165,7 @@ class PdfUtils {
                   style: pw.TextStyle(
                     fontSize: 20,
                     fontWeight: pw.FontWeight.bold,
-                    color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                    color: PdfColor.fromHex(primaryColorHex),
                     font: ttf,
                   ),
                 ),
@@ -177,7 +178,7 @@ class PdfUtils {
                       .toList(),
                 ),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Text(
@@ -185,7 +186,7 @@ class PdfUtils {
                   style: pw.TextStyle(
                     fontSize: 20,
                     fontWeight: pw.FontWeight.bold,
-                    color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                    color: PdfColor.fromHex(primaryColorHex),
                     font: ttf,
                   ),
                 ),
@@ -200,8 +201,7 @@ class PdfUtils {
                             decoration: pw.BoxDecoration(
                               borderRadius: pw.BorderRadius.circular(12),
                               border: pw.Border.all(
-                                color: PdfColor.fromHex(
-                                    ColorManager.primaryColor.toHex()),
+                                color: PdfColor.fromHex(primaryColorHex),
                                 width: 2,
                               ),
                             ),
@@ -214,7 +214,7 @@ class PdfUtils {
                       .toList(),
                 ),
                 pw.Divider(
-                  color: PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                  color: PdfColor.fromHex(primaryColorHex),
                 ),
                 pw.SizedBox(height: 7.2),
                 pw.Center(
@@ -223,8 +223,7 @@ class PdfUtils {
                     style: pw.TextStyle(
                       fontSize: 16,
                       fontWeight: pw.FontWeight.bold,
-                      color:
-                          PdfColor.fromHex(ColorManager.primaryColor.toHex()),
+                      color: PdfColor.fromHex(primaryColorHex),
                       font: ttf,
                     ),
                   ),

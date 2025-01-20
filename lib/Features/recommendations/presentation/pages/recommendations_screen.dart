@@ -19,8 +19,20 @@ class RecommendationsScreenState extends State<RecommendationsScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late List<Animation<Offset>> _slideAnimations;
-  final List<String> recommendations =
-      List.generate(10, (index) => 'Recommendation $index');
+
+  final List<String> recommendations = [
+    'Implement Pest Management Plan',
+    'Adopt Integrated Pest Management (IPM)',
+    'Install Pest Barriers',
+    'Optimize Storage Practices',
+    'Maintain Ventilation Systems',
+    'Schedule Routine ULV Fogging',
+    'Train Staff on Pest Protocols',
+    'Seal Cracks and Gaps',
+    'Enhance Waste Management',
+    'Use Monitoring Tools',
+  ];
+
   late List<bool> selectedRecommendations;
 
   @override
@@ -72,6 +84,8 @@ class RecommendationsScreenState extends State<RecommendationsScreen>
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: const Text(StringManager.recommendations),
         actions: [
           IconButton(

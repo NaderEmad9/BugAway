@@ -105,6 +105,8 @@ class MaterialUsageScreenState extends State<MaterialUsageScreen>
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         title: Text(
           StringManager.materialUsages,
@@ -138,22 +140,19 @@ class MaterialUsageScreenState extends State<MaterialUsageScreen>
                     final availableQuantity =
                         availableQuantities[material] ?? 0;
                     final unit = materialUnits[material] ?? 'Unit'; // Get unit
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0.r),
-                      child: MaterialUsageItem(
-                        isUnavailable: availableQuantity == 0,
-                        item: MaterailModelDto(
-                          name: material,
-                          quantity: quantity,
-                          unit: unit, // Use unit
-                        ),
-                        availableQuantity: availableQuantity,
-                        selectedQuantity: quantity,
-                        unit: unit, // Pass unit
-                        onIncrement: () => updateQuantity(material, 1),
-                        onDecrement: () => updateQuantity(material, -1),
-                        onDelete: () => showDeleteConfirmationDialog(material),
+                    return MaterialUsageItem(
+                      isUnavailable: availableQuantity == 0,
+                      item: MaterailModelDto(
+                        name: material,
+                        quantity: quantity,
+                        unit: unit, // Use unit
                       ),
+                      availableQuantity: availableQuantity,
+                      selectedQuantity: quantity,
+                      unit: unit, // Pass unit
+                      onIncrement: () => updateQuantity(material, 1),
+                      onDecrement: () => updateQuantity(material, -1),
+                      onDelete: () => showDeleteConfirmationDialog(material),
                     );
                   },
                 ),

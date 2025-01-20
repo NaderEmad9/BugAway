@@ -28,9 +28,8 @@ class _AllUsersState extends State<AllUsers>
 
   @override
   void dispose() {
-    if (mounted) {
-      searchController.dispose();
-    }
+    allUsersViewModel.disposeAnimation();
+    searchController.dispose();
     super.dispose();
   }
 
@@ -94,8 +93,13 @@ class _AllUsersState extends State<AllUsers>
                           ),
                         );
                       } else {
-                        return SlideTransition(
-                          position: allUsersViewModel.slideAnimation,
+                        return AnimatedSwitcher(
+                          duration: const Duration(seconds: 1),
+                          transitionBuilder:
+                              (Widget child, Animation<double> animation) {
+                            return FadeTransition(
+                                opacity: animation, child: child);
+                          },
                           child: ListView.builder(
                             itemCount: allUsersViewModel.allUsers.length,
                             itemBuilder: (context, index) {
@@ -103,10 +107,14 @@ class _AllUsersState extends State<AllUsers>
 
                               return InkWell(
                                 onTap: () {
-                                  Navigator.pushNamed(context,
-                                      RoutesManger.routeNameSitesOfUserForAdmin,
-                                      arguments:
-                                          allUsersViewModel.allUsers[index].id);
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesManger.routeNameSitesOfUserForAdmin,
+                                    arguments: {
+                                      'userId': user.id,
+                                      'userName': user.userName,
+                                    },
+                                  );
                                 },
                                 child: UserWidget(
                                   imageUrl: user.image ?? ImageManager.avatar,

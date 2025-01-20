@@ -1,5 +1,5 @@
+import 'package:bug_away/Features/device/presentation/widgets/custom_qr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bug_away/Config/routes/routes_manger.dart';
 import 'package:bug_away/Core/component/button_custom.dart';
@@ -7,10 +7,9 @@ import 'package:bug_away/Core/utils/colors.dart';
 import 'package:bug_away/Core/utils/strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bug_away/Features/site_report/presentation/manager/report_view_model.dart';
-import 'package:logging/logging.dart';
+import 'package:intl/intl.dart';
+import '../../data/models/testing_data_table.dart';
 import '../widgets/custome_date_table.dart';
-
-final Logger _logger = Logger('DeviceScreen');
 
 class DeviceScreen extends StatefulWidget {
   const DeviceScreen({super.key});
@@ -25,6 +24,7 @@ class _DeviceScreenState extends State<DeviceScreen>
   double _opacity = 0.0;
   late AnimationController _animationController;
   late Animation<Offset> _slideAnimation;
+  List<DeviceId> scannedDevices = [];
 
   @override
   void initState() {
@@ -62,6 +62,8 @@ class _DeviceScreenState extends State<DeviceScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text(StringManager.device),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.save, color: ColorManager.whiteColor),
@@ -99,7 +101,7 @@ class _DeviceScreenState extends State<DeviceScreen>
             Expanded(
               child: SlideTransition(
                 position: _slideAnimation,
-                child: CustomeDateTable(),
+                child: CustomeDateTable(data: scannedDevices),
               ),
             ),
           ],
@@ -109,22 +111,24 @@ class _DeviceScreenState extends State<DeviceScreen>
   }
 
   Future<void> scan() async {
-    late String scanCode;
-    try {
-      scanCode = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR);
+    final scanCode = await Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => const CustomQRScanner()),
+    );
 
-      if (!mounted) return;
-
+    if (scanCode != null && scanCode is String) {
       setState(() {
         code = scanCode;
+        scannedDevices.add(DeviceId(
+          id: scanCode,
+          date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+          time: DateFormat('HH:mm').format(DateTime.now()),
+        ));
       });
 
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushNamed(
           RoutesManger.routeNameDeviceInspectionScreen,
           arguments: code);
-    } catch (e) {
-      _logger.severe('Failed to scan barcode', e);
     }
   }
 }

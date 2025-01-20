@@ -100,6 +100,8 @@ class _SignaturesScreenState extends State<SignaturesScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Text(isMultiSelectMode
             ? '${selectedIndices.length} ${StringManager.selected}'
             : StringManager.signatures),

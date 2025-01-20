@@ -60,8 +60,8 @@ class AccountRequestDataSourceImpl implements AccountRequestDataSource {
   }
 
   Future<String> sendEmail(String email, String subject, String body) async {
-    const username = 'hhhmohamed91@gmail.com';
-    const password = 'lcqs adlk qstk fxrz';
+    const username = 'naderemad961516@gmail.com';
+    const password = 'lvht xlkc qvcr rpoz';
     final smtpServer = gmail(username, password);
     final message = Message()
       ..from = const Address(username)

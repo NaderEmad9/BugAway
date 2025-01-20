@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:bug_away/Core/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:signature/signature.dart';
 
@@ -15,8 +16,8 @@ class SignaturePad extends StatefulWidget {
 class _SignaturePadState extends State<SignaturePad> {
   final SignatureController signatureController = SignatureController(
     penStrokeWidth: 5,
-    penColor: Colors.black,
-    exportBackgroundColor: Colors.white,
+    penColor: ColorManager.blackColor,
+    exportBackgroundColor: ColorManager.whiteColor,
   );
 
   @override
@@ -28,57 +29,65 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
+      appBar: AppBar(
+        title: const Text(StringManager.signaturePad),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Stack(
         children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  color: ColorManager.whiteColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Signature(
-                  controller: signatureController,
-                  backgroundColor: ColorManager.whiteColor,
-                  height: double.infinity,
-                  width: double.infinity,
-                ),
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Column(
             children: [
-              IconButton(
-                onPressed: () {
-                  signatureController.clear();
-                  setState(() {});
-                },
-                icon: const Icon(
-                  Icons.clear,
-                  color: ColorManager.primaryColor,
-                  size: 35,
-                ),
-              ),
-              IconButton(
-                onPressed: () async {
-                  if (signatureController.isNotEmpty) {
-                    var data = await signatureController.toPngBytes();
-                    if (data != null) {
-                      Navigator.pop(context, data); // Return signature data
-                    }
-                  }
-                },
-                icon: const Icon(
-                  Icons.check,
-                  color: ColorManager.primaryColor,
-                  size: 35,
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      right: 20, left: 20, top: 20, bottom: 60),
+                  child: Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      color: ColorManager.whiteColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Signature(
+                      controller: signatureController,
+                      backgroundColor: ColorManager.whiteColor,
+                      height: double.infinity,
+                      width: double.infinity,
+                    ),
+                  ),
                 ),
               ),
             ],
+          ),
+          Positioned(
+            bottom: 80,
+            left: 30,
+            child: FloatingActionButton(
+              heroTag: 'clearButton',
+              onPressed: () {
+                signatureController.clear();
+                setState(() {});
+              },
+              backgroundColor: ColorManager.primaryColor,
+              child: const Icon(Icons.clear, color: ColorManager.whiteColor),
+            ),
+          ),
+          Positioned(
+            bottom: 80,
+            right: 30,
+            child: FloatingActionButton(
+              heroTag: 'checkButton',
+              onPressed: () async {
+                if (signatureController.isNotEmpty) {
+                  var data = await signatureController.toPngBytes();
+                  if (data != null) {
+                    Navigator.pop(context, data);
+                  }
+                }
+              },
+              backgroundColor: ColorManager.primaryColor,
+              child: const Icon(Icons.check, color: ColorManager.whiteColor),
+            ),
           ),
         ],
       ),

@@ -127,6 +127,8 @@ class AddPhotosScreenState extends State<AddPhotosScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         title: Text(
           isMultiSelectMode

@@ -130,7 +130,7 @@ class _CategoryScreenState extends State<CategoryScreen>
                               Navigator.pushNamedAndRemoveUntil(
                                 // ignore: use_build_context_synchronously
                                 context,
-                                RoutesManger.routeNameLogin,
+                                RoutesManger.routeNameEngOwnerScreen,
                                 (route) => false,
                               );
                             },
@@ -223,10 +223,15 @@ class _CategoryScreenState extends State<CategoryScreen>
                                               } else if (currentUser.type ==
                                                   'user') {
                                                 Navigator.pushNamed(
-                                                    context,
-                                                    RoutesManger
-                                                        .routeNameSitesOfUserForAdmin,
-                                                    arguments: currentUser.id);
+                                                  context,
+                                                  RoutesManger
+                                                      .routeNameSitesOfUserForAdmin,
+                                                  arguments: {
+                                                    'userId': currentUser.id,
+                                                    'userName':
+                                                        currentUser.userName,
+                                                  },
+                                                );
                                               }
                                             }
                                             if (index == 2) {

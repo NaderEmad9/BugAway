@@ -138,6 +138,8 @@ class SiteViewModel extends Cubit<SiteState> {
         emit(DeleteSiteErrorState(failure: failure));
       },
       (_) {
+        sites.remove(site);
+        searchedSites = sites;
         isLoading = false;
         emit(DeleteSiteSuccessState());
       },
@@ -186,10 +188,6 @@ class SiteViewModel extends Cubit<SiteState> {
               site.siteName!.toLowerCase().contains(query.toLowerCase()))
           .toList();
     }
-    if (searchedSites.isEmpty) {
-      emit(NoResultSearchSiteSuccessState());
-    } else {
-      emit(SearchSiteSuccessState());
-    }
+    emit(SearchSiteSuccessState());
   }
 }

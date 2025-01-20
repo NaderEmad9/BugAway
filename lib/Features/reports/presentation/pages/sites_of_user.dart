@@ -27,14 +27,32 @@ class _SitesOFUserState extends State<SitesOFUser>
   GetSitesOfUsersViewModel viewModel = getIt<GetSitesOfUsersViewModel>();
   TextEditingController searchController = TextEditingController();
 
+  String? userName;
+
+  @override
+  void dispose() {
+    viewModel.disposeAnimation();
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
     viewModel.initializeAnimation(this);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      var args = ModalRoute.of(context)!.settings.arguments as String;
-      viewModel.getSites(args);
+      final args = ModalRoute.of(context)!.settings.arguments;
+      if (args is Map<String, dynamic>) {
+        viewModel.getSites(args['userId']);
+        setState(() {
+          if (args.containsKey('userName')) {
+            userName = args['userName'];
+          }
+
+          viewModel.isLoading = false;
+        });
+      }
     });
 
     searchController.addListener(() {
@@ -54,7 +72,7 @@ class _SitesOFUserState extends State<SitesOFUser>
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
           elevation: 0,
-          title: const Text(StringManager.sites),
+          title: Text("$userName's ${StringManager.sites}"),
         ),
         body: BlocBuilder<GetSitesOfUsersViewModel, GetSitesState>(
           bloc: viewModel,
@@ -88,8 +106,13 @@ class _SitesOFUserState extends State<SitesOFUser>
                           ),
                         );
                       } else {
-                        return SlideTransition(
-                          position: viewModel.slideAnimation,
+                        return AnimatedSwitcher(
+                          duration: const Duration(seconds: 1),
+                          transitionBuilder:
+                              (Widget child, Animation<double> animation) {
+                            return FadeTransition(
+                                opacity: animation, child: child);
+                          },
                           child: Padding(
                             padding: EdgeInsets.all(4.sp),
                             child: ListView.builder(

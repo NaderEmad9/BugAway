@@ -3,10 +3,9 @@ import 'package:bug_away/Core/utils/colors.dart';
 import '../../data/models/testing_data_table.dart';
 
 class CustomeDateTable extends StatelessWidget {
-  //todo get the date and make a copy of it so we can edit it later , sorting , modification and so on...
-  final List<DeviceId> data = List.from(deviceId);
+  final List<DeviceId> data;
 
-  CustomeDateTable({super.key});
+  const CustomeDateTable({required this.data, super.key});
 
   @override
   Widget build(BuildContext context) {

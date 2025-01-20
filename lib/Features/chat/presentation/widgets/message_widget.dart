@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bug_away/Core/utils/colors.dart';
 import 'package:bug_away/Features/chat/domain/entities/message_entity.dart';
 import 'package:bug_away/Features/chat/presentation/manager/chat_view_model_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MessageWidget extends StatelessWidget {
   final MessageEntity message;
@@ -46,7 +47,7 @@ class SentMessage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 9.5, horizontal: 12),
             decoration: const BoxDecoration(
                 color: ColorManager.primaryColor,
                 borderRadius: BorderRadius.only(
@@ -61,7 +62,7 @@ class SentMessage extends StatelessWidget {
                   message.content,
                   style: const TextStyle(color: ColorManager.whiteColor),
                 ),
-                const SizedBox(height: 5),
+                SizedBox(height: 2.h),
                 Text(
                   dateTime,
                   style: const TextStyle(
@@ -98,7 +99,7 @@ class ReciveMessage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 9.5, horizontal: 12),
             decoration: const BoxDecoration(
                 color: ColorManager.greyShade5,
                 borderRadius: BorderRadius.only(
@@ -116,12 +117,12 @@ class ReciveMessage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 5),
+                SizedBox(height: 2.h),
                 Text(
                   message.content,
                   style: const TextStyle(color: ColorManager.whiteColor),
                 ),
-                const SizedBox(height: 5),
+                SizedBox(height: 2.h),
                 Text(
                   dateTime,
                   style: const TextStyle(

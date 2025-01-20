@@ -35,6 +35,10 @@ class ReportOfSiteViewModel extends Cubit<GetReportOfSiteState> {
     animationController.forward();
   }
 
+  void disposeAnimation() {
+    animationController.dispose();
+  }
+
   Future<void> getReportOfSite(String siteId) async {
     isLoading = true;
     emit(GetReportOfSiteLoadingState());

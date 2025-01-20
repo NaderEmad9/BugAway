@@ -234,38 +234,41 @@ class _SiteReportScreenState extends State<SiteReportScreen>
         builder: (context, state) {
           return Stack(
             children: [
-              Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: sections.length,
-                      itemBuilder: (context, index) {
-                        return SlideTransition(
-                          position: _slideAnimations[index],
-                          child: SiteReportItemContainer(
-                            title: sections[index]['title'],
-                            onClicked: () => navigateToSection(
-                                sections[index]['screen'],
-                                sections[index]['title']),
-                            icon: sections[index]['icon'],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 36.0),
-                    child: Center(
-                      child: ButtonCustom(
-                        buttonName: StringManager.submit,
-                        onTap: submitReport,
-                        textStyle: Theme.of(context).textTheme.titleSmall,
-                        icon: CupertinoIcons.paperplane_fill,
+              Padding(
+                padding: const EdgeInsets.only(top: 36),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: sections.length,
+                        itemBuilder: (context, index) {
+                          return SlideTransition(
+                            position: _slideAnimations[index],
+                            child: SiteReportItemContainer(
+                              title: sections[index]['title'],
+                              onClicked: () => navigateToSection(
+                                  sections[index]['screen'],
+                                  sections[index]['title']),
+                              icon: sections[index]['icon'],
+                            ),
+                          );
+                        },
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 36.0),
+                      child: Center(
+                        child: ButtonCustom(
+                          buttonName: StringManager.submit,
+                          onTap: submitReport,
+                          textStyle: Theme.of(context).textTheme.titleSmall,
+                          icon: CupertinoIcons.paperplane_fill,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               if (state is ReportLoading)
                 Container(

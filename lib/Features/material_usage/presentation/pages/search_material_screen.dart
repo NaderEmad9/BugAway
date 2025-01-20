@@ -108,6 +108,8 @@ class SearchMaterialScreenState extends State<SearchMaterialUsageScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         title: Text(
           StringManager.searchMaterial,

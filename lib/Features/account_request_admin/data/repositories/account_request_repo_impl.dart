@@ -10,6 +10,7 @@ import 'package:bug_away/Features/user_request_account/domain/entities/user_requ
 class AccountRequestRepoImpl implements AccountRequestRepo {
   AccountRequestDataSource accountRequestDataSource;
   AccountRequestRepoImpl({required this.accountRequestDataSource});
+
   @override
   Future<Either<Failure, Stream<QuerySnapshot<UserRequestAccountEntity>>>>
       getRequests() async {

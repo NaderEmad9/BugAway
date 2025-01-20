@@ -20,12 +20,17 @@ class ChatScreen extends StatelessWidget {
     bloc.user = bloc.getUser()!;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          StringManager.companyGroup,
-          style:
-              Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 20.sp),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: AppBar(
+          elevation: 0,
+          title: Text(
+            StringManager.teamHub,
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(fontSize: 20.sp),
+          ),
         ),
       ),
       backgroundColor: Colors.transparent,
