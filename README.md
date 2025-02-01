@@ -107,15 +107,18 @@ Ensure the following are installed:
 ### General View
 
 <p align="center">
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/splash.png" alt="Splash Screen" width="220" style="margin: 10px;"/>
+</p>
+<p align="center">
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/choose.png" alt="Choose Option" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/requesting.png" alt="Requesting" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/login.png" alt="Login Screen" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/forget.png" alt="Forgot Password" width="220" style="margin: 10px;"/>
+  
 </p>
 <p align="center">
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/forget.png" alt="Forgot Password" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/report.png" alt="Report View" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/pdf.png" alt="PDF View" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/splash.png" alt="Splash Screen" width="220" style="margin: 10px;"/>
 </p>
 
 ---
@@ -140,24 +143,22 @@ Ensure the following are installed:
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/cat.png" alt="Categories" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/drawm.png" alt="Draw Manager" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/manager_prof.png" alt="Manager Profile" width="220" style="margin: 10px;"/>
+</p>
+<p align="center">
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/add_acc.png" alt="Add Account" width="220" style="margin: 10px;"/>
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/chat.png" alt="Chat Screen" width="220" style="margin: 10px;"/>
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/request.png" alt="Requests" width="220" style="margin: 10px;"/>
+</p>
+<p align="center">
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/invm.png" alt="Inventory Management" width="220" style="margin: 10px;"/>
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/inv_di.png" alt="Inventory Details" width="220" style="margin: 10px;"/>
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/m_sites.png" alt="Manager Sites" width="220" style="margin: 10px;"/>
   
 </p>
 <p align="center">
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/chat.png" alt="Chat Screen" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/request.png" alt="Requests" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/invm.png" alt="Inventory Management" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/inv_di.png" alt="Inventory Details" width="220" style="margin: 10px;"/>
-</p>
-<p align="center">
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/m_sites.png" alt="Manager Sites" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/di_site.png" alt="Detailed Site" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/users_repos.png" alt="Users" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/manager_view/mv_repos.png" alt="User Report" width="220" style="margin: 10px;"/>
-  
-</p>
-<p align="center">
-  
 </p>
 
 ---
@@ -168,17 +169,18 @@ Ensure the following are installed:
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/cat.png" alt="Category" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/drawer.png" alt="Drawer" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/uprof.png" alt="User Profile" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/chatu.png" alt="Chat" width="220" style="margin: 10px;"/>
 </p>
 <p align="center">
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/chatu.png" alt="Chat" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/inv_us.png" alt="Inventory Usage" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/us_sites.png" alt="Sites" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/uv_repos.png" alt="UV Report" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/form.png" alt="Form" width="220" style="margin: 10px;"/>
-  
 </p>
 <p align="center">
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/uv_repos.png" alt="UV Report" width="220" style="margin: 10px;"/>
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/form.png" alt="Form" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/notes.png" alt="Notes" width="220" style="margin: 10px;"/>
+  </p>
+<p align="center">
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/recommend.PNG" alt="Recommendations" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/conditions.png" alt="Conditions" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/pic.png" alt="Picture" width="220" style="margin: 10px;"/>
@@ -187,14 +189,12 @@ Ensure the following are installed:
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/matu.png" alt="Material Usage" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/mats.png" alt="Materials" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/scanned.PNG" alt="Scanned" width="220" style="margin: 10px;"/>
-  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/qr_scan.PNG" alt="QR Scan" width="220" style="margin: 10px;"/>
 </p>
 <p align="center">
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/qr_scan.PNG" alt="QR Scan" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/signs.PNG" alt="Signs" width="220" style="margin: 10px;"/>
   <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/engineer_view/sign_pad.PNG" alt="Signature Pad" width="220" style="margin: 10px;"/>
   
-</p>
-<p align="center">
 </p>
 
 ---
