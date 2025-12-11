@@ -1,10 +1,42 @@
 # BugAway Application
 
-The **BugAway Application** is a Flutter-based app designed to streamline and manage pesticide operations. This app caters to two types of users: **Managers** and **Engineers**, offering tools for managing inventory, assigning locations, creating reports, and facilitating real-time communication.
+<p align="center">
+  <img src="https://github.com/NaderEmad9/BugAway/raw/main/assets/screenshots/general_view/splash.png" alt="BugAway Logo" width="250"/>
+</p>
+
+<p align="center">
+  <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"></a>
+  <a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"></a>
+  <a href="https://firebase.google.com"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase"></a>
+  <a href="https://bloclibrary.dev"><img src="https://img.shields.io/badge/BLoC-00D1B2?style=for-the-badge&logo=bloc&logoColor=white" alt="BLoC"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-iOS%20%7C%20Android-blue?style=flat-square" alt="Platform">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License">
+  <img src="https://img.shields.io/github/stars/NaderEmad9/BugAway?style=flat-square" alt="Stars">
+</p>
 
 ---
 
-## Features
+**BugAway** is a comprehensive Flutter-based mobile application designed to streamline and manage pesticide operations. This app caters to two types of users: **Managers** and **Engineers**, offering powerful tools for managing inventory, assigning locations, creating detailed reports, and facilitating real-time communication.
+
+---
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Architecture](#-architecture)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Screenshots](#-screenshots)
+- [Project Structure](#-project-structure)
+- [Contributing](#-contributions)
+- [License](#-license)
+
+---
+
+## ✨ Features
 
 ### General Features
 - **Account Requests**: Engineers can request accounts; managers can accept or decline these requests.
@@ -31,26 +63,60 @@ The **BugAway Application** is a Flutter-based app designed to streamline and ma
 
 ---
 
-## Technologies Used
+## 🏗️ Architecture
 
-- **Flutter**: Cross-platform framework for app development.
-- **Firebase**: Real-time database, notifications, and chat.
-- **Dart**: Programming language for development.
-- **State Management**: Provider for efficient state handling.
-- **Google Fonts**: Enhanced text styling and readability.
+BugAway follows **Clean Architecture** principles, ensuring a scalable, maintainable, and testable codebase.
 
-### Key Dependencies
-- **firebase_core**: Firebase core functionalities.
-- **firebase_auth**: User authentication.
-- **cloud_firestore**: Real-time database for storing and syncing data.
-- **provider**: State management.
-- **flutter_local_notifications**: Local notification support.
-- **pdf**: PDF generation and handling.
-- **qr_flutter**: QR code generation for specific features.
+```
+lib/
+├── Config/           # App configuration (routes, theme)
+├── Core/             # Shared components, utilities, error handling
+├── Features/         # Feature modules (each with clean architecture layers)
+│   ├── login/
+│   │   ├── data/          # Data sources, repositories implementation
+│   │   ├── domain/        # Business logic, entities, use cases
+│   │   └── presentation/  # UI, Cubit/BLoC state management
+│   ├── inventory/
+│   ├── chat/
+│   └── ...
+├── di/               # Dependency Injection setup
+└── main.dart         # App entry point
+```
+
+### Key Architecture Patterns:
+- **Clean Architecture** - Separation of concerns across Data, Domain, and Presentation layers
+- **BLoC/Cubit Pattern** - Predictable state management
+- **Dependency Injection** - Decoupled and testable code
+- **Repository Pattern** - Abstract data sources
 
 ---
 
-## Getting Started
+## 🛠️ Tech Stack
+
+- **Flutter**: Cross-platform framework for app development.
+- **Firebase**: Real-time database, authentication, cloud storage, and notifications.
+- **Dart**: Programming language for development.
+- **State Management**: BLoC/Cubit for predictable state handling.
+- **Dependency Injection**: get_it for service locator pattern.
+- **Google Fonts**: Enhanced text styling and readability.
+
+### Key Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| `firebase_core` | Firebase core functionalities |
+| `firebase_auth` | User authentication |
+| `cloud_firestore` | Real-time database |
+| `firebase_storage` | File storage |
+| `flutter_bloc` | State management |
+| `get_it` | Dependency injection |
+| `flutter_local_notifications` | Local notifications |
+| `pdf` | PDF generation |
+| `qr_flutter` | QR code generation |
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -100,7 +166,7 @@ Ensure the following are installed:
    flutter run
    ```
 
-## Screenshots
+## 📸 Screenshots
 
 ---
 
@@ -199,10 +265,40 @@ Ensure the following are installed:
 
 ---
 
-## Contributions
+## 📂 Project Structure
+
+```
+BugAway/
+├── android/              # Android native configuration
+├── ios/                  # iOS native configuration
+├── lib/
+│   ├── Config/           # Routes and theme configuration
+│   ├── Core/             # Shared utilities, components, error handling
+│   ├── Features/         # Feature-based modules
+│   │   ├── chat/         # Real-time messaging
+│   │   ├── inventory/    # Material management
+│   │   ├── login/        # Authentication
+│   │   ├── reports/      # Report generation
+│   │   └── ...           # Other features
+│   ├── di/               # Dependency injection
+│   └── main.dart         # Entry point
+├── assets/               # Images, fonts, animations
+├── test/                 # Unit and widget tests
+└── pubspec.yaml          # Dependencies
+```
+
+---
+
+## 🤝 Contributions
 
 Contributions are welcome! Feel free to fork this repository, open issues, and submit pull requests.
 
-## License
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
