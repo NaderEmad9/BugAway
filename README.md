@@ -5,6 +5,11 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/NaderEmad9/BugAway/actions/workflows/flutter_ci.yml"><img src="https://github.com/NaderEmad9/BugAway/actions/workflows/flutter_ci.yml/badge.svg" alt="Flutter CI"></a>
+  <img src="https://img.shields.io/badge/Tests-27%20Passing-brightgreen?style=flat-square" alt="Tests">
+</p>
+
+<p align="center">
   <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"></a>
   <a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"></a>
   <a href="https://firebase.google.com"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase"></a>
@@ -285,6 +290,37 @@ BugAway/
 ├── assets/               # Images, fonts, animations
 ├── test/                 # Unit and widget tests
 └── pubspec.yaml          # Dependencies
+```
+
+---
+
+## 🧪 Testing
+
+BugAway includes comprehensive tests to ensure code quality and reliability.
+
+### Run Tests
+
+```bash
+flutter test
+```
+
+### Test Coverage
+
+| Type | Status | Description |
+|------|--------|-------------|
+| Unit Tests | ✅ | Models, Repositories, Business Logic |
+| Widget Tests | ✅ | UI Components, Form Validation |
+| Integration Tests | 🔜 | End-to-end flows |
+
+### Test Structure
+
+```
+test/
+├── unit/
+│   ├── models/           # Model serialization tests
+│   └── repositories/     # Repository logic tests
+├── widget/               # Widget component tests
+└── widget_test.dart      # App-level tests
 ```
 
 ---
